@@ -1,9 +1,21 @@
 
 import { useState } from 'react';
-import { Phone, MapPin, Star } from 'lucide-react';
+import { Phone, MapPin, Star, Menu } from 'lucide-react';
+import {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuItem
+} from '../components/ui/dropdown-menu';
+import ObeatPL from '../components/sections/obeat_pl';
+import FancyPL from '../components/sections/fancy_pl';
+import Navbar from '../components/sections/navbar';
+import Home from '../components/sections/home';
+import Story from '../components/sections/story';
 
 const Index = () => {
   const [activeSection, setActiveSection] = useState('home');
+  const [activePriceList, setActivePriceList] = useState<'schlieren' | 'zurich'>('schlieren');
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -13,82 +25,31 @@ const Index = () => {
     }
   };
 
+  const handlePriceListClick = (location: 'schlieren' | 'zurich') => {
+    scrollToSection('pricelist');
+    setActivePriceList(location);
+  };
+
+  const handlePriceListSectionClick = () => {
+    scrollToSection('pricelist');
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-pink-50 via-purple-50 to-indigo-50">
       {/* Navbar */}
-      <nav className="fixed top-0 w-full bg-white/90 backdrop-blur-md shadow-lg z-50 border-b border-pink-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex-shrink-0">
-              <h1 className="text-2xl font-bold bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent">
-                FancyBeauty
-              </h1>
-            </div>
-            <div className="hidden md:block">
-              <div className="ml-10 flex items-baseline space-x-8">
-                {['home', 'services', 'pricelist', 'gallery', 'reviews', 'contact'].map((section) => (
-                  <button
-                    key={section}
-                    onClick={() => scrollToSection(section)}
-                    className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 capitalize ${
-                      activeSection === section
-                        ? 'bg-gradient-to-r from-pink-500 to-purple-500 text-white'
-                        : 'text-gray-700 hover:text-pink-600 hover:bg-pink-50'
-                    }`}
-                  >
-                    {section}
-                  </button>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </nav>
+      <Navbar
+        activeSection={activeSection}
+        scrollToSection={scrollToSection}
+        handlePriceListSectionClick={handlePriceListSectionClick}
+        activePriceList={activePriceList}
+        handlePriceListClick={handlePriceListClick}
+      />
 
       {/* Home Section */}
-      <section id="home" className="pt-20 pb-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-5xl font-bold text-gray-900 mb-6">
-              Welcome to <span className="bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent">FancyBeauty</span>
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              Step into a world of luxury and elegance at FancyBeauty, where your nails become a canvas of art. 
-              Our expert technicians combine creativity with precision to deliver stunning nail designs that reflect your unique style. 
-              From classic manicures to intricate nail art and luxurious lash extensions, we offer a complete beauty experience 
-              in our state-of-the-art salon facilities in Zurich and Schlieren.
-            </p>
-          </div>
-          
-          <div className="bg-white/70 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-pink-100">
-            <div className="grid md:grid-cols-2 gap-8 items-center">
-              <div>
-                <h3 className="text-3xl font-bold text-gray-900 mb-4">Our Story</h3>
-                <p className="text-gray-600 leading-relaxed mb-6">
-                  Founded with passion for beauty and excellence, FancyBeauty has been transforming nails and enhancing natural beauty 
-                  for over a decade. Our team of certified professionals stays updated with the latest trends and techniques to ensure 
-                  you receive the highest quality service in a relaxing, hygienic environment.
-                </p>
-                <div className="flex items-center space-x-4">
-                  <div className="flex text-yellow-400">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="h-5 w-5 fill-current" />
-                    ))}
-                  </div>
-                  <span className="text-gray-600">Rated 5/5 by our clients</span>
-                </div>
-              </div>
-              <div className="relative">
-                <img 
-                  src="https://images.unsplash.com/photo-1604654894610-df63bc536371?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
-                  alt="FancyBeauty Salon Interior" 
-                  className="rounded-2xl shadow-2xl w-full h-80 object-cover"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <Home />
+
+      {/* Story Section */}
+      <Story />
 
       {/* Services Section */}
       <section id="services" className="py-16 px-4 sm:px-6 lg:px-8 bg-white/30">
@@ -161,86 +122,34 @@ const Index = () => {
             <p className="text-xl text-gray-600">Transparent pricing for all our services</p>
           </div>
           
-          <div className="grid md:grid-cols-3 gap-8">
-            {/* Manicure/Pedicure Prices */}
-            <div className="bg-white rounded-3xl p-8 shadow-xl border border-pink-100">
-              <h3 className="text-2xl font-bold text-center text-gray-900 mb-6">Manicure & Pedicure</h3>
-              <div className="space-y-4">
-                <div className="flex justify-between items-center py-2 border-b border-gray-100">
-                  <span className="text-gray-700">Classic Manicure</span>
-                  <span className="font-semibold text-pink-600">CHF 45</span>
-                </div>
-                <div className="flex justify-between items-center py-2 border-b border-gray-100">
-                  <span className="text-gray-700">Gel Manicure</span>
-                  <span className="font-semibold text-pink-600">CHF 65</span>
-                </div>
-                <div className="flex justify-between items-center py-2 border-b border-gray-100">
-                  <span className="text-gray-700">Classic Pedicure</span>
-                  <span className="font-semibold text-pink-600">CHF 55</span>
-                </div>
-                <div className="flex justify-between items-center py-2 border-b border-gray-100">
-                  <span className="text-gray-700">Spa Pedicure</span>
-                  <span className="font-semibold text-pink-600">CHF 75</span>
-                </div>
-                <div className="flex justify-between items-center py-2">
-                  <span className="text-gray-700">Mani + Pedi Combo</span>
-                  <span className="font-semibold text-pink-600">CHF 90</span>
-                </div>
-              </div>
-            </div>
+          <div className="flex justify-center gap-6 mb-10">
+            <button
+              className={`relative px-8 py-3 rounded-full text-lg font-semibold transition-all duration-500 overflow-hidden focus:outline-none border-2 border-pink-400 shadow-md
+                ${activePriceList === 'schlieren' ? 'bg-gradient-to-r from-pink-400 to-purple-400 text-white scale-105' : 'bg-white text-pink-600 hover:bg-pink-50'}`}
+              onClick={() => handlePriceListClick('schlieren')}
+            >
+              <span className="block transition-all duration-500" style={{ opacity: activePriceList === 'schlieren' ? 1 : 0.7 }}>Obeauty</span>
+            </button>
+            <button
+              className={`relative px-8 py-3 rounded-full text-lg font-semibold transition-all duration-500 overflow-hidden focus:outline-none border-2 border-purple-400 shadow-md
+                ${activePriceList === 'zurich' ? 'bg-gradient-to-r from-purple-400 to-pink-400 text-white scale-105' : 'bg-white text-purple-600 hover:bg-purple-50'}`}
+              onClick={() => handlePriceListClick('zurich')}
+            >
+              <span className="block transition-all duration-500" style={{ opacity: activePriceList === 'zurich' ? 1 : 0.7 }}>Fancy</span>
+            </button>
+          </div>
+          
 
-            {/* Nail Art Prices */}
-            <div className="bg-white rounded-3xl p-8 shadow-xl border border-pink-100">
-              <h3 className="text-2xl font-bold text-center text-gray-900 mb-6">Nail Art Design</h3>
-              <div className="space-y-4">
-                <div className="flex justify-between items-center py-2 border-b border-gray-100">
-                  <span className="text-gray-700">Simple Design (per nail)</span>
-                  <span className="font-semibold text-purple-600">CHF 8</span>
-                </div>
-                <div className="flex justify-between items-center py-2 border-b border-gray-100">
-                  <span className="text-gray-700">Complex Design (per nail)</span>
-                  <span className="font-semibold text-purple-600">CHF 15</span>
-                </div>
-                <div className="flex justify-between items-center py-2 border-b border-gray-100">
-                  <span className="text-gray-700">3D Art (per nail)</span>
-                  <span className="font-semibold text-purple-600">CHF 20</span>
-                </div>
-                <div className="flex justify-between items-center py-2 border-b border-gray-100">
-                  <span className="text-gray-700">Full Set Art Design</span>
-                  <span className="font-semibold text-purple-600">CHF 120</span>
-                </div>
-                <div className="flex justify-between items-center py-2">
-                  <span className="text-gray-700">Seasonal Special</span>
-                  <span className="font-semibold text-purple-600">CHF 95</span>
-                </div>
-              </div>
+          <div className="relative">
+            <div
+              className={`transition-all duration-700 ${activePriceList === 'schlieren' ? 'opacity-100 translate-x-0 z-10' : 'opacity-0 -translate-x-10 z-0 absolute w-full'} pointer-events-${activePriceList === 'schlieren' ? 'auto' : 'none'}`}
+            >
+              <ObeatPL />
             </div>
-
-            {/* Lashes Prices */}
-            <div className="bg-white rounded-3xl p-8 shadow-xl border border-pink-100">
-              <h3 className="text-2xl font-bold text-center text-gray-900 mb-6">Lashes</h3>
-              <div className="space-y-4">
-                <div className="flex justify-between items-center py-2 border-b border-gray-100">
-                  <span className="text-gray-700">Classic Lashes</span>
-                  <span className="font-semibold text-indigo-600">CHF 120</span>
-                </div>
-                <div className="flex justify-between items-center py-2 border-b border-gray-100">
-                  <span className="text-gray-700">Volume Lashes</span>
-                  <span className="font-semibold text-indigo-600">CHF 180</span>
-                </div>
-                <div className="flex justify-between items-center py-2 border-b border-gray-100">
-                  <span className="text-gray-700">Hybrid Lashes</span>
-                  <span className="font-semibold text-indigo-600">CHF 150</span>
-                </div>
-                <div className="flex justify-between items-center py-2 border-b border-gray-100">
-                  <span className="text-gray-700">Lash Fill (2-3 weeks)</span>
-                  <span className="font-semibold text-indigo-600">CHF 80</span>
-                </div>
-                <div className="flex justify-between items-center py-2">
-                  <span className="text-gray-700">Lash Removal</span>
-                  <span className="font-semibold text-indigo-600">CHF 30</span>
-                </div>
-              </div>
+            <div
+              className={`transition-all duration-700 ${activePriceList === 'zurich' ? 'opacity-100 translate-x-0 z-10' : 'opacity-0 translate-x-10 z-0 absolute w-full'} pointer-events-${activePriceList === 'zurich' ? 'auto' : 'none'}`}
+            >
+              <FancyPL />
             </div>
           </div>
         </div>
@@ -323,17 +232,32 @@ const Index = () => {
               <div className="space-y-4 mb-6">
                 <div className="flex items-center space-x-3">
                   <Phone className="h-5 w-5 text-pink-600" />
-                  <span className="text-gray-700">+41 44 123 4567</span>
+                  <a href="tel:+41782002699" className="text-gray-700 hover:underline focus:underline outline-none">+41 078 200 26 99</a>
                 </div>
                 <div className="flex items-center space-x-3">
                   <MapPin className="h-5 w-5 text-pink-600" />
-                  <span className="text-gray-700">Bahnhofstrasse 123, 8001 Zurich</span>
+                  <a href="https://maps.app.goo.gl/bcjDb1y8XfT6LjdD9" target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:underline focus:underline outline-none">Bleicherweg 20, 8002 Zürich</a>
                 </div>
+                <div className="flex items-center space-x-3 mt-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="h-5 w-5 text-pink-600">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M7.5 3h9A4.5 4.5 0 0 1 21 7.5v9A4.5 4.5 0 0 1 16.5 21h-9A4.5 4.5 0 0 1 3 16.5v-9A4.5 4.5 0 0 1 7.5 3zm9.75 2.25a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5zM12 8.25A3.75 3.75 0 1 0 12 15.75 3.75 3.75 0 0 0 12 8.25z" />
+                  </svg>
+                  <a href="https://www.instagram.com/fancyobeauty.nails?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:underline focus:underline outline-none">@fancyobeauty.nails</a>
+                </div>
+              </div>
+              {/* Opening Hours Zurich */}
+              <div className="mb-6">
+                <h4 className="text-lg font-semibold text-pink-600 mb-2">Opening Hours</h4>
+                <ul className="text-gray-700 space-y-1 text-sm">
+                  <li>Monday - Friday: 9:30 - 7:30 </li>
+                  <li>Saturday: 9:30 - 6:00 </li>
+                  <li>Sunday: Closed</li>
+                </ul>
               </div>
               
               <div className="w-full h-64 rounded-2xl overflow-hidden">
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2701.0424!2d8.5386!3d47.3769!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDfCsDIyJzM3LjAiTiA4wrAzMicxOS4wIkU!5e0!3m2!1sen!2sch!4v1620000000000!5m2!1sen!2sch"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10808.985515812854!2d8.536166999999999!3d47.3681096!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47900b5d1f65d61d%3A0xec2f65fd7ca29d5e!2sFancy%20Beauty%20GmbH!5e0!3m2!1sen!2sch!4v1751979188946!5m2!1sen!2sch"
                   width="100%"
                   height="100%"
                   style={{ border: 0 }}
@@ -352,17 +276,32 @@ const Index = () => {
               <div className="space-y-4 mb-6">
                 <div className="flex items-center space-x-3">
                   <Phone className="h-5 w-5 text-purple-600" />
-                  <span className="text-gray-700">+41 44 987 6543</span>
+                  <a href="tel:+41779811788" className="text-gray-700 hover:underline focus:underline outline-none">+41 077 981 17 88</a>
                 </div>
                 <div className="flex items-center space-x-3">
                   <MapPin className="h-5 w-5 text-purple-600" />
-                  <span className="text-gray-700">Zürcherstrasse 45, 8952 Schlieren</span>
+                  <a href="https://maps.app.goo.gl/ovD47MnugcvtzYg38" target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:underline focus:underline outline-none">Wiesenstrasse 12a, 8952 Schlieren</a>
                 </div>
+                <div className="flex items-center space-x-3 mt-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="h-5 w-5 text-purple-600">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M7.5 3h9A4.5 4.5 0 0 1 21 7.5v9A4.5 4.5 0 0 1 16.5 21h-9A4.5 4.5 0 0 1 3 16.5v-9A4.5 4.5 0 0 1 7.5 3zm9.75 2.25a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5zM12 8.25A3.75 3.75 0 1 0 12 15.75 3.75 3.75 0 0 0 12 8.25z" />
+                  </svg>
+                  <a href="https://www.instagram.com/obeauty.nails?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:underline focus:underline outline-none">@obeauty.nails</a>
+                </div>
+              </div>
+              {/* Opening Hours Schlieren */}
+              <div className="mb-6">
+                <h4 className="text-lg font-semibold text-purple-600 mb-2">Opening Hours</h4>
+                <ul className="text-gray-700 space-y-1 text-sm">
+                  <li>Monday - Friday: 9:30 -7:30 </li>
+                  <li>Saturday: 9:30 - 6:00 </li>
+                  <li>Sunday: Closed</li>
+                </ul>
               </div>
               
               <div className="w-full h-64 rounded-2xl overflow-hidden">
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2700.8945!2d8.4486!3d47.3989!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDfCsDIzJzU2LjAiTiA4wrAyNic1NS4wIkU!5e0!3m2!1sen!2sch!4v1620000000000!5m2!1sen!2sch"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2700.6254407430106!2d8.44040267684534!3d47.399740602238815!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47900dec7a57cddb%3A0xe63fff5fd7fbebb0!2sO%20Beauty%20Nails%20%26%20Lashes!5e0!3m2!1sen!2sch!4v1751979300344!5m2!1sen!2sch"
                   width="100%"
                   height="100%"
                   style={{ border: 0 }}
@@ -415,7 +354,7 @@ const Index = () => {
           
           <div className="mt-12 pt-8 border-t border-pink-400 text-center">
             <p className="text-pink-100">
-              © 2024 FancyBeauty. All rights reserved. | Crafted with ❤️ in Switzerland
+              © 2024 FancyBauty GMBH. All rights reserved. | Crafted with ❤️ in Switzerland
             </p>
           </div>
         </div>
