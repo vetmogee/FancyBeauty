@@ -27,9 +27,11 @@ const Navbar: React.FC<NavbarProps> = ({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
         <div className="flex justify-between items-center h-full">
           <div className="flex-shrink-0">
-            <h1 className="text-2xl font-bold bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent">
-              FancyBeauty
-            </h1>
+            <img 
+              src="/fancylogo.png" 
+              alt="FancyBeauty Logo" 
+              className="h-10 w-auto object-contain"
+            />
           </div>
           {/* Desktop Nav */}
           <div className="hidden md:block">
@@ -74,7 +76,7 @@ const Navbar: React.FC<NavbarProps> = ({
             </div>
           </div>
           {/* Medium Screen Dropdown Nav */}
-          <div className="block md:hidden mr-4">
+          <div className="block md:hidden ">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <button className="p-2 rounded-md focus:outline-none">
