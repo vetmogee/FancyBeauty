@@ -56,11 +56,13 @@ export const schlierenPriceList = [
     category: 'Lashes',
     items: [
       { name: 'Natural look', price: 'CHF 100' },
-      { name: 'Refill (natural look)', price: 'CHF 80' },
+      { name: 'Refill (natural look)', price: 'from CHF 80' },
       { name: 'Mascara look', price: 'CHF 130' },
-      { name: 'Refill (mascara look)', price: 'CHF 90' },
-      { name: 'Mega volume/Whispy', price: 'CHF 150' },
-      { name: 'Refill (mega volume/whispy)', price: 'CHF 100' },
+      { name: 'Refill (mascara look)', price: 'from CHF 90' },
+      { name: 'Mega volume/Whispy', price: 'CHF 160' },
+      { name: 'Refill (mega volume/whispy)', price: 'from CHF 110' },
+      { name: 'Anime look', price: 'CHF 140' },
+      { name: 'Lash removal ', price: 'CHF 50' },
     ],
   },
 ];

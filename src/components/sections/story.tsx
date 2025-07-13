@@ -1,4 +1,5 @@
 import React from 'react';
+import storypic from '../../assets/storypic.png';
 import { Star } from 'lucide-react';
 
 const Story = () => {
@@ -16,16 +17,32 @@ const Story = () => {
               </p>
               <div className="flex items-center space-x-4">
                 <div className="flex text-yellow-400">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="h-5 w-5 fill-current" />
-                  ))}
+                  {[...Array(5)].map((_, i) => {
+                    const rating = 4.2;
+                    const starValue = i + 1;
+                    const fillPercentage = Math.max(0, Math.min(1, rating - i));
+                    
+                    return (
+                      <div key={i} className="relative">
+                        <Star className="h-5 w-5 text-gray-300" />
+                        {fillPercentage > 0 && (
+                          <div 
+                            className="absolute inset-0 overflow-hidden"
+                            style={{ width: `${fillPercentage * 100}%` }}
+                          >
+                            <Star className="h-5 w-5 fill-current" />
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
                 </div>
-                <span className="text-gray-600">Rated 5/5 by our clients</span>
+                <span className="text-gray-600">Rated 4.2/5 by our clients</span>
               </div>
             </div>
             <div className="relative">
               <img 
-                src="https://images.unsplash.com/photo-1604654894610-df63bc536371?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
+                src={storypic}
                 alt="FancyBeauty Salon Interior" 
                 className="rounded-2xl shadow-2xl w-full h-80 object-cover"
               />

@@ -1,14 +1,15 @@
 import React from 'react';
+import homeimg from '../../assets/homeimg.png';
 
 const Home = () => {
   return (
-    <section id="home" className="pt-20 pb-16 px-4 sm:px-6 lg:px-8">
+    <section id="home" className="mt-16">
       <div className="max-w-7xl mx-auto">
-        <div className="relative rounded-3xl overflow-hidden shadow-2xl">
+        <div className="relative overflow-hidden shadow-2xl">
           {/* Background Image with Dark Overlay */}
           <div className="absolute inset-0">
             <img 
-              src="https://images.unsplash.com/photo-1604654894610-df63bc536371?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
+              src={homeimg} 
               alt="FancyBeauty Salon Interior" 
               className="w-full h-full object-cover"
             />

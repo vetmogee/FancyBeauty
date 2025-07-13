@@ -6,6 +6,7 @@ import {
   DropdownMenuItem
 } from '../ui/dropdown-menu';
 import React from 'react';
+import fancylogo from '../../assets/fancylogo.png';
 
 interface NavbarProps {
   activeSection: string;
@@ -28,7 +29,7 @@ const Navbar: React.FC<NavbarProps> = ({
         <div className="flex justify-between items-center h-full">
           <div className="flex-shrink-0">
             <img 
-              src="/fancylogo.png" 
+              src={fancylogo} 
               alt="FancyBeauty Logo" 
               className="h-10 w-auto object-contain"
             />
