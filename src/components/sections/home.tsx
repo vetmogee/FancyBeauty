@@ -4,14 +4,14 @@ import homeimg from '../../assets/homeimg.png';
 const Home = () => {
   return (
     <section id="home" className="mt-16">
-      <div className="max-w-7xl mx-auto">
+      <div className="">
         <div className="relative overflow-hidden shadow-2xl">
           {/* Background Image with Dark Overlay */}
-          <div className="absolute inset-0">
+          <div className="absolute inset-0  md:h-[500px]">
             <img 
               src={homeimg} 
               alt="FancyBeauty Salon Interior" 
-              className="w-full h-full object-cover"
+              className="w-full object-cover"
             />
             <div className="absolute inset-0 bg-black/50"></div>
           </div>

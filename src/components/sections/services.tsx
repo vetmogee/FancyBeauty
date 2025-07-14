@@ -1,5 +1,7 @@
 import React from 'react';
 import servicepedi from '../../assets/servicepedi.png';
+import servicelash from '../../assets/servicelash.png';
+import servicenailart from '../../assets/servicenailart.png'
 
 const Services = () => {
   return (
@@ -32,7 +34,7 @@ const Services = () => {
           <div className="bg-white rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 border border-pink-100">
             <div className="text-center">
               <img 
-                src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
+                src={servicenailart }
                 alt="Nail Art Design" 
                 className="w-full h-48 object-cover rounded-2xl mb-6"
               />
@@ -49,7 +51,7 @@ const Services = () => {
           <div className="bg-white rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 border border-pink-100">
             <div className="text-center">
               <img 
-                src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
+                src={servicelash}
                 alt="Eyelash Extensions" 
                 className="w-full h-48 object-cover rounded-2xl mb-6"
               />

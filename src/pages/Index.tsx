@@ -1,5 +1,6 @@
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import ObeatPL from '../components/sections/obeat_pl';
 import FancyPL from '../components/sections/fancy_pl';
 import Navbar from '../components/sections/navbar';
@@ -14,6 +15,17 @@ import Footer from '../components/sections/footer';
 const Index = () => {
   const [activeSection, setActiveSection] = useState('home');
   const [activePriceList, setActivePriceList] = useState<'schlieren' | 'zurich'>('schlieren');
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (location.state && location.state.scrollTo) {
+      scrollToSection(location.state.scrollTo);
+      // Remove scrollTo from state so it doesn't repeat
+      navigate(location.pathname, { replace: true, state: {} });
+    }
+    // eslint-disable-next-line
+  }, [location.state]);
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -66,14 +78,14 @@ const Index = () => {
                 ${activePriceList === 'schlieren' ? 'bg-gradient-to-r from-pink-400 to-purple-400 text-white scale-105' : 'bg-white text-pink-600 hover:bg-pink-50'}`}
               onClick={() => handlePriceListClick('schlieren')}
             >
-              <span className="block transition-all duration-500" style={{ opacity: activePriceList === 'schlieren' ? 1 : 0.7 }}>Obeauty</span>
+              <span className="block transition-all duration-500" style={{ opacity: activePriceList === 'schlieren' ? 1 : 0.7 }}>Schlieren</span>
             </button>
             <button
               className={`relative px-8 py-3 rounded-full text-lg font-semibold transition-all duration-500 overflow-hidden focus:outline-none border-2 border-purple-400 shadow-md
                 ${activePriceList === 'zurich' ? 'bg-gradient-to-r from-purple-400 to-pink-400 text-white scale-105' : 'bg-white text-purple-600 hover:bg-purple-50'}`}
               onClick={() => handlePriceListClick('zurich')}
             >
-              <span className="block transition-all duration-500" style={{ opacity: activePriceList === 'zurich' ? 1 : 0.7 }}>Fancy</span>
+              <span className="block transition-all duration-500" style={{ opacity: activePriceList === 'zurich' ? 1 : 0.7 }}>Zurich</span>
             </button>
           </div>
           

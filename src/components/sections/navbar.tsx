@@ -7,6 +7,7 @@ import {
 } from '../ui/dropdown-menu';
 import React from 'react';
 import fancylogo from '../../assets/fancylogo.png';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 interface NavbarProps {
   activeSection: string;
@@ -23,6 +24,16 @@ const Navbar: React.FC<NavbarProps> = ({
   activePriceList,
   handlePriceListClick
 }) => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  // Helper for nav buttons: if on /abg, navigate home and pass section; else, scroll
+  const handleNav = (section: string) => {
+    if (location.pathname === '/abg') {
+      navigate('/', { state: { scrollTo: section } });
+    } else {
+      scrollToSection(section);
+    }
+  };
   return (
     <nav className="fixed top-0 w-full bg-white/90 backdrop-blur-md shadow-lg z-50 border-b border-pink-100" style={{ height: '64px' }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
@@ -40,7 +51,7 @@ const Navbar: React.FC<NavbarProps> = ({
               {['home', 'services'].map((section) => (
                 <button
                   key={section}
-                  onClick={() => scrollToSection(section)}
+                  onClick={() => handleNav(section)}
                   className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 capitalize ${
                     activeSection === section
                       ? 'bg-gradient-to-r from-pink-500 to-purple-500 text-white'
@@ -50,9 +61,10 @@ const Navbar: React.FC<NavbarProps> = ({
                   {section}
                 </button>
               ))}
+              
               {/* Price List Button */}
               <button
-                onClick={handlePriceListSectionClick}
+                onClick={() => handleNav('pricelist')}
                 className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 capitalize ${
                   activeSection === 'pricelist'
                     ? 'bg-gradient-to-r from-pink-500 to-purple-500 text-white'
@@ -64,7 +76,7 @@ const Navbar: React.FC<NavbarProps> = ({
               {['gallery', 'reviews', 'contact'].map((section) => (
                 <button
                   key={section}
-                  onClick={() => scrollToSection(section)}
+                  onClick={() => handleNav(section)}
                   className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 capitalize ${
                     activeSection === section
                       ? 'bg-gradient-to-r from-pink-500 to-purple-500 text-white'
@@ -72,8 +84,16 @@ const Navbar: React.FC<NavbarProps> = ({
                   }`}
                 >
                   {section}
-                </button>
+                </button> 
+                
               ))}
+              {/* ABG Page Button */}
+              <button
+                onClick={() => navigate('/abg')}
+                className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 capitalize text-gray-700 hover:text-pink-600 hover:bg-pink-50`}
+              >
+                ABG
+              </button>
             </div>
           </div>
           {/* Medium Screen Dropdown Nav */}
@@ -88,7 +108,7 @@ const Navbar: React.FC<NavbarProps> = ({
                 {['home', 'services'].map((section) => (
                   <DropdownMenuItem
                     key={section}
-                    onSelect={() => scrollToSection(section)}
+                    onSelect={() => handleNav(section)}
                     className={
                       activeSection === section
                         ? 'bg-gradient-to-r from-pink-500 to-purple-500 text-white'
@@ -98,13 +118,15 @@ const Navbar: React.FC<NavbarProps> = ({
                     {section.charAt(0).toUpperCase() + section.slice(1)}
                   </DropdownMenuItem>
                 ))}
-                <DropdownMenuItem onSelect={handlePriceListSectionClick}>
+                
+                
+                <DropdownMenuItem onSelect={() => handleNav('pricelist')}>
                   Price List
                 </DropdownMenuItem>
                 {['gallery', 'reviews', 'contact'].map((section) => (
                   <DropdownMenuItem
                     key={section}
-                    onSelect={() => scrollToSection(section)}
+                    onSelect={() => handleNav(section)}
                     className={
                       activeSection === section
                         ? 'bg-gradient-to-r from-pink-500 to-purple-500 text-white'
@@ -112,8 +134,13 @@ const Navbar: React.FC<NavbarProps> = ({
                     }
                   >
                     {section.charAt(0).toUpperCase() + section.slice(1)}
-                  </DropdownMenuItem>
+                  </DropdownMenuItem> 
                 ))}
+
+                {/* ABG Page Dropdown Item */}
+                  <DropdownMenuItem onSelect={() => navigate('/abg')}>
+                  ABG
+                </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
           </div>
