@@ -9,6 +9,9 @@ import React from 'react';
 import fancylogolong from '../../assets/fancylogolong.png';
 import { useNavigate, useLocation } from 'react-router-dom';
 
+// Define a single gradient value for navbar active states
+const NAVBAR_GRADIENT = 'bg-gradient-to-r from-rose-500 to-pink-200 text-white';
+
 interface NavbarProps {
   activeSection: string;
   scrollToSection: (sectionId: string) => void;
@@ -39,11 +42,13 @@ const Navbar: React.FC<NavbarProps> = ({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
         <div className="flex justify-between items-center h-full">
           <div className="flex-shrink-0">
-            <img 
-              src={fancylogolong} 
-              alt="FancyBeauty Logo Long" 
-              className="h-14 w-auto object-contain"
-            />
+            <button onClick={() => navigate('/')} className="focus:outline-none">
+              <img 
+                src={fancylogolong} 
+                alt="FancyBeauty Logo" 
+                className="h-14 w-auto object-contain"
+              />
+            </button>
           </div>
           {/* Desktop Nav */}
           <div className="hidden md:block">
@@ -54,7 +59,7 @@ const Navbar: React.FC<NavbarProps> = ({
                   onClick={() => handleNav(section)}
                   className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 capitalize ${
                     activeSection === section
-                      ? 'bg-gradient-to-r from-pink-500 to-purple-500 text-white'
+                      ? NAVBAR_GRADIENT
                       : 'text-gray-700 hover:text-pink-600 hover:bg-pink-50'
                   }`}
                 >
@@ -67,7 +72,7 @@ const Navbar: React.FC<NavbarProps> = ({
                 onClick={() => handleNav('pricelist')}
                 className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 capitalize ${
                   activeSection === 'pricelist'
-                    ? 'bg-gradient-to-r from-pink-500 to-purple-500 text-white'
+                    ? NAVBAR_GRADIENT
                     : 'text-gray-700 hover:text-pink-600 hover:bg-pink-50'
                 }`}
               >
@@ -79,7 +84,7 @@ const Navbar: React.FC<NavbarProps> = ({
                   onClick={() => handleNav(section)}
                   className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 capitalize ${
                     activeSection === section
-                      ? 'bg-gradient-to-r from-pink-500 to-purple-500 text-white'
+                      ? NAVBAR_GRADIENT
                       : 'text-gray-700 hover:text-pink-600 hover:bg-pink-50'
                   }`}
                 >
@@ -111,7 +116,7 @@ const Navbar: React.FC<NavbarProps> = ({
                     onSelect={() => handleNav(section)}
                     className={
                       activeSection === section
-                        ? 'bg-gradient-to-r from-pink-500 to-purple-500 text-white'
+                        ? NAVBAR_GRADIENT
                         : ''
                     }
                   >
@@ -129,7 +134,7 @@ const Navbar: React.FC<NavbarProps> = ({
                     onSelect={() => handleNav(section)}
                     className={
                       activeSection === section
-                        ? 'bg-gradient-to-r from-pink-500 to-purple-500 text-white'
+                        ? NAVBAR_GRADIENT
                         : ''
                     }
                   >

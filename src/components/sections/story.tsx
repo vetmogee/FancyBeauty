@@ -18,7 +18,7 @@ const Story = () => {
               <div className="flex items-center space-x-4">
                 <div className="flex text-yellow-400">
                   {[...Array(5)].map((_, i) => {
-                    const rating = 4.35;
+                    const rating = 4.25;
                     const starValue = i + 1;
                     // For each star, fillPercentage is:
                     // 1 for full, 0.25 for quarter, 0 for empty

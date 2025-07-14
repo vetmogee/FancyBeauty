@@ -17,12 +17,12 @@ const Footer: React.FC<FooterProps> = ({ scrollToSection }) => {
     }
   };
   return (
-    <footer className="bg-gradient-to-r from-pink-600 to-purple-600 text-white py-12 px-4 sm:px-6 lg:px-8">
+    <footer className="bg-gradient-to-r from-rose-200 to-pink-200 text-black py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <div className="grid md:grid-cols-3 gap-8">
           <div>
             <h3 className="text-2xl font-bold mb-4">FancyBeauty</h3>
-            <p className="text-pink-100 leading-relaxed">
+            <p className="text-black-100 leading-relaxed">
               Your premier destination for luxury nail care and beauty services in Zurich and Schlieren.
             </p>
           </div>
@@ -34,7 +34,7 @@ const Footer: React.FC<FooterProps> = ({ scrollToSection }) => {
                 <button
                   key={link}
                   onClick={() => handleNav(link.toLowerCase().replace(' ', ''))}
-                  className="block text-pink-100 hover:text-white transition-colors duration-200"
+                  className="block text-gray-900 hover:text-black transition-colors duration-200"
                 >
                   {link}
                 </button>
@@ -42,7 +42,7 @@ const Footer: React.FC<FooterProps> = ({ scrollToSection }) => {
               {/* ABG Page Button */}
               <button
                 onClick={() => navigate('/abg')}
-                className="block text-pink-100 hover:text-white transition-colors duration-200"
+                className="block text-back-100 hover:text-black transition-colors duration-200"
               >
                 ABG
               </button>
@@ -52,8 +52,8 @@ const Footer: React.FC<FooterProps> = ({ scrollToSection }) => {
           
         </div>
         
-        <div className="mt-12 pt-8 border-t border-pink-400 text-center">
-          <p className="text-pink-100">
+        <div className="mt-12 pt-8 border-t border-pink-200 text-center">
+          <p className="text-black-100">
             © 2024 FancyBeauty GmbH. All rights reserved. | Crafted with ❤️ in Switzerland
           </p>
         </div>
