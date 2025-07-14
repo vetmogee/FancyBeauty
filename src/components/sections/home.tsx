@@ -5,7 +5,7 @@ const Home = () => {
   return (
     <section id="home" className="mt-16">
       <div className="">
-        <div className="relative overflow-hidden shadow-2xl h-96 md:h-[500px]">
+        <div className="relative overflow-hidden shadow-2xl h-96 lg:h-[1050px] md:h-[500px] ">
           {/* Background Image with Dark Overlay */}
           <div className="absolute inset-0 ">
             <img 

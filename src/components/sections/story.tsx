@@ -11,17 +11,25 @@ const Story = () => {
             <div>
               <h3 className="text-3xl font-bold text-gray-900 mb-4">Our Story</h3>
               <p className="text-gray-600 leading-relaxed mb-6">
-                Founded with passion for beauty and excellence, FancyBeauty has been transforming nails and enhancing natural beauty 
+                Founded with passion for beauty and excellence in 2018, FancyBeauty has been transforming nails and enhancing natural beauty 
                 for over a decade. Our team of certified professionals stays updated with the latest trends and techniques to ensure 
                 you receive the highest quality service in a relaxing, hygienic environment.
               </p>
               <div className="flex items-center space-x-4">
                 <div className="flex text-yellow-400">
                   {[...Array(5)].map((_, i) => {
-                    const rating = 4.2;
+                    const rating = 4.35;
                     const starValue = i + 1;
-                    const fillPercentage = Math.max(0, Math.min(1, rating - i));
-                    
+                    // For each star, fillPercentage is:
+                    // 1 for full, 0.25 for quarter, 0 for empty
+                    let fillPercentage = 0;
+                    if (rating >= starValue) {
+                      fillPercentage = 1;
+                    } else if (rating > i) {
+                      fillPercentage = rating - i;
+                    }
+                    // Snap to 0.25 increments for visual accuracy
+                    fillPercentage = Math.round(fillPercentage * 4) / 4;
                     return (
                       <div key={i} className="relative">
                         <Star className="h-5 w-5 text-gray-300" />
@@ -37,7 +45,7 @@ const Story = () => {
                     );
                   })}
                 </div>
-                <span className="text-gray-600">Rated 4.2/5 by our clients</span>
+                <span className="text-gray-600">Rated 4.35/5 by our clients</span>
               </div>
             </div>
             <div className="relative">

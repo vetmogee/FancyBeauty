@@ -16,11 +16,14 @@ const Services = () => {
           {/* Manicure/Pedicure */}
           <div className="bg-white rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 border border-pink-100">
             <div className="text-center">
-              <img 
-                src={servicepedi}                
-                alt="Manicure and Pedicure" 
-                className="w-full h-48 object-cover     rounded-2xl mb-6"
-              />
+              <div className="relative w-full h-48 mb-6">
+                <img 
+                  src={servicepedi}                
+                  alt="Manicure and Pedicure" 
+                  className="w-full h-48 object-cover rounded-2xl"
+                />
+                <div className="absolute inset-0 bg-black rounded-2xl" style={{ opacity: 0.1 }} />
+              </div>
               <h3 className="text-2xl font-bold text-gray-900 mb-4">Manicure & Pedicure</h3>
               <p className="text-gray-600 leading-relaxed">
                 Indulge in our luxurious manicure and pedicure treatments. From classic French tips to modern gel applications, 
@@ -37,7 +40,7 @@ const Services = () => {
                 src={servicenailart }
                 alt="Nail Art Design" 
                 className="w-full h-48 object-cover rounded-2xl mb-6"
-              />
+                />
               <h3 className="text-2xl font-bold text-gray-900 mb-4">Nail Art Design</h3>
               <p className="text-gray-600 leading-relaxed">
                 Express your creativity with our custom nail art designs. From intricate patterns and geometric shapes to 

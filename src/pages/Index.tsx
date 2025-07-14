@@ -11,6 +11,7 @@ import Gallery from '../components/sections/gallery';
 import Reviews from '../components/sections/reviews';
 import Contact from '../components/sections/contact';
 import Footer from '../components/sections/footer';
+import Book from '../components/sections/book';
 
 const Index = () => {
   const [activeSection, setActiveSection] = useState('home');
@@ -60,10 +61,13 @@ const Index = () => {
 
       {/* Story Section */}
       <Story />
+      
+      {/* Book Section */}
+      <Book />
 
       {/* Services Section */}
       <Services />
-
+      
       {/* Price List Section */}
       <section id="pricelist" className="py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">

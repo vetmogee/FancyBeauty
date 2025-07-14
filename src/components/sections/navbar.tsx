@@ -6,7 +6,7 @@ import {
   DropdownMenuItem
 } from '../ui/dropdown-menu';
 import React from 'react';
-import fancylogo from '../../assets/fancylogo.png';
+import fancylogolong from '../../assets/fancylogolong.png';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 interface NavbarProps {
@@ -35,14 +35,14 @@ const Navbar: React.FC<NavbarProps> = ({
     }
   };
   return (
-    <nav className="fixed top-0 w-full bg-white/90 backdrop-blur-md shadow-lg z-50 border-b border-pink-100" style={{ height: '64px' }}>
+    <nav className="fixed top-0 w-full bg-white/90 backdrop-blur-md shadow-lg z-50 border-b border-pink-100" style={{ height: '75px' }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
         <div className="flex justify-between items-center h-full">
           <div className="flex-shrink-0">
             <img 
-              src={fancylogo} 
-              alt="FancyBeauty Logo" 
-              className="h-10 w-auto object-contain"
+              src={fancylogolong} 
+              alt="FancyBeauty Logo Long" 
+              className="h-14 w-auto object-contain"
             />
           </div>
           {/* Desktop Nav */}
