@@ -5,19 +5,19 @@ const Home = () => {
   return (
     <section id="home" className="mt-16">
       <div className="">
-        <div className="relative overflow-hidden shadow-2xl">
+        <div className="relative overflow-hidden shadow-2xl h-96 md:h-[500px]">
           {/* Background Image with Dark Overlay */}
-          <div className="absolute inset-0  md:h-[500px]">
+          <div className="absolute inset-0 ">
             <img 
               src={homeimg} 
               alt="FancyBeauty Salon Interior" 
-              className="w-full object-cover"
+              className="w-full h-full object-cover "
             />
             <div className="absolute inset-0 bg-black/50"></div>
           </div>
           
           {/* Content */}
-          <div className="relative z-10 text-center py-20 px-8">
+          <div className="relative z-10 text-center px-8 flex flex-col justify-center items-center h-full">
             <h2 className="text-5xl font-bold text-white mb-6">
               Welcome to <span className="bg-gradient-to-r from-pink-400 to-purple-400 bg-clip-text text-transparent">FancyBeauty</span>
             </h2>
