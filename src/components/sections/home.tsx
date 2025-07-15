@@ -19,7 +19,7 @@ const Home = () => {
           {/* Content */}
           <div className="relative z-10 text-center px-8 flex flex-col justify-center items-center h-full">
             <h2 className="text-5xl font-bold text-white mb-6">
-              Welcome to <span className="bg-gradient-to-r from-pink-400 to-rose-200 bg-clip-text text-transparent">FancyBeauty</span>
+              Welcome to <span className="bg-gradient-to-r from-pink-400 to-rose-300 bg-clip-text text-transparent">FancyBeauty</span>
             </h2>
             {/* <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
               Step into a world of luxury and elegance at FancyBeauty, where your nails become a canvas of art. 

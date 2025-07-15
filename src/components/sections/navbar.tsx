@@ -53,20 +53,39 @@ const Navbar: React.FC<NavbarProps> = ({
           {/* Desktop Nav */}
           <div className="hidden md:block">
             <div className="ml-10 flex items-baseline space-x-8">
-              {['home', 'services'].map((section) => (
-                <button
-                  key={section}
-                  onClick={() => handleNav(section)}
-                  className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 capitalize ${
-                    activeSection === section
-                      ? NAVBAR_GRADIENT
-                      : 'text-gray-700 hover:text-pink-600 hover:bg-pink-50'
-                  }`}
-                >
-                  {section}
-                </button>
-              ))}
-              
+              {/* Home Button */}
+              <button
+                onClick={() => handleNav('home')}
+                className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 capitalize ${
+                  activeSection === 'home'
+                    ? NAVBAR_GRADIENT
+                    : 'text-gray-700 hover:text-pink-600 hover:bg-pink-50'
+                }`}
+              >
+                Home
+              </button>
+              {/* Book Button */}
+              <button
+                onClick={() => handleNav('book')}
+                className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 capitalize ${
+                  activeSection === 'book'
+                    ? NAVBAR_GRADIENT
+                    : 'text-gray-700 hover:text-pink-600 hover:bg-pink-50'
+                }`}
+              >
+                Book
+              </button> 
+              {/* Services Button */}
+              <button
+                onClick={() => handleNav('services')}
+                className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 capitalize ${
+                  activeSection === 'services'
+                    ? NAVBAR_GRADIENT
+                    : 'text-gray-700 hover:text-pink-600 hover:bg-pink-50'
+                }`}
+              >
+                Services
+              </button>
               {/* Price List Button */}
               <button
                 onClick={() => handleNav('pricelist')}
@@ -123,7 +142,10 @@ const Navbar: React.FC<NavbarProps> = ({
                     {section.charAt(0).toUpperCase() + section.slice(1)}
                   </DropdownMenuItem>
                 ))}
-                
+                {/* Book Dropdown Item */}
+                <DropdownMenuItem onSelect={() => handleNav('book')} className={activeSection === 'book' ? NAVBAR_GRADIENT : ''}>
+                  Book
+                </DropdownMenuItem>
                 
                 <DropdownMenuItem onSelect={() => handleNav('pricelist')}>
                   Price List

@@ -4,7 +4,7 @@ import { Star } from 'lucide-react';
 
 const Story = () => {
   return (
-    <section className="py-16 px-4 sm:px-6 lg:px-8">
+    <section id="story" className="py-16 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <div className="bg-white/70 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-pink-100">
           <div className="grid md:grid-cols-2 gap-8 items-center">

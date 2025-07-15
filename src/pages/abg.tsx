@@ -121,7 +121,7 @@ const AbgPage = () => {
           Wir freuen uns, Sie bedienen zu dürfen!</p>
         </div>
         <button
-          className="px-6 py-3 mt-8 rounded-full bg-gradient-to-r from-pink-400 to-purple-400 text-white font-semibold shadow-md hover:scale-105 transition-all"
+          className="px-6 py-3 mt-8 rounded-full bg-gradient-to-r from-pink-400 to-rose-300 text-white font-semibold shadow-md hover:scale-105 transition-all"
           onClick={goHome}
         >
           Go to Home

@@ -2,7 +2,7 @@ import React from 'react';
 
 const Book = () => {
   return (
-    <section className="py-16 px-4 sm:px-6 lg:px-8">
+    <section id="book" className="py-16 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <div className="bg-white/70 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-pink-100">
           {/* First row: Book with WhatsApp */}

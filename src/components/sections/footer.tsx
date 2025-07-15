@@ -17,7 +17,7 @@ const Footer: React.FC<FooterProps> = ({ scrollToSection }) => {
     }
   };
   return (
-    <footer className="bg-gradient-to-r from-rose-200 to-pink-200 text-black py-12 px-4 sm:px-6 lg:px-8">
+    <footer className="bg-gradient-to-r from-pink-400 to-rose-300 text-black py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <div className="grid md:grid-cols-3 gap-8">
           <div>
@@ -39,6 +39,13 @@ const Footer: React.FC<FooterProps> = ({ scrollToSection }) => {
                   {link}
                 </button>
               ))}
+              {/* Book Button */}
+              <button
+                onClick={() => handleNav('book')}
+                className="block text-back-100 hover:text-black transition-colors duration-200"
+              >
+                Book
+              </button>
               {/* ABG Page Button */}
               <button
                 onClick={() => navigate('/abg')}

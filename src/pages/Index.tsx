@@ -1,5 +1,5 @@
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import ObeatPL from '../components/sections/obeat_pl';
 import FancyPL from '../components/sections/fancy_pl';
@@ -45,6 +45,54 @@ const Index = () => {
     scrollToSection('pricelist');
   };
 
+  const sectionIds = [
+    'home',
+    'story',
+    'book',
+    'services',
+    'pricelist',
+    'gallery',
+    'reviews',
+    'contact',
+  ];
+
+  // Track section refs for IntersectionObserver
+  const sectionRefs = useRef<{ [key: string]: HTMLElement | null }>({});
+
+  useEffect(() => {
+    // Set up refs
+    sectionIds.forEach((id) => {
+      sectionRefs.current[id] = document.getElementById(id);
+    });
+    const handleIntersect = (entries: IntersectionObserverEntry[]) => {
+      // Find the entry that is most visible (largest intersectionRatio)
+      let maxRatio = 0;
+      let visibleSection = activeSection;
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && entry.intersectionRatio > maxRatio) {
+          maxRatio = entry.intersectionRatio;
+          visibleSection = entry.target.id;
+        }
+      });
+      if (visibleSection && visibleSection !== activeSection) {
+        setActiveSection(visibleSection);
+      }
+    };
+    const observer = new window.IntersectionObserver(handleIntersect, {
+      root: null,
+      rootMargin: '0px 0px -60% 0px', // Trigger when section is 40% from top
+      threshold: [0.2, 0.4, 0.6, 0.8, 1],
+    });
+    sectionIds.forEach((id) => {
+      const el = sectionRefs.current[id];
+      if (el) observer.observe(el);
+    });
+    return () => {
+      observer.disconnect();
+    };
+    // eslint-disable-next-line
+  }, []);
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-pink-50 via-purple-50 to-indigo-50">
       {/* Navbar */}
@@ -79,14 +127,14 @@ const Index = () => {
           <div className="flex justify-center gap-6 mb-10">
             <button
               className={`relative px-8 py-3 rounded-full text-lg font-semibold transition-all duration-500 overflow-hidden focus:outline-none border-2 border-pink-400 shadow-md
-                ${activePriceList === 'schlieren' ? 'bg-gradient-to-r from-pink-400 to-purple-400 text-white scale-105' : 'bg-white text-pink-600 hover:bg-pink-50'}`}
+                ${activePriceList === 'schlieren' ? 'bg-gradient-to-r from-pink-400 to-rose-300 text-white scale-105' : 'bg-white text-pink-600 hover:bg-pink-50'}`}
               onClick={() => handlePriceListClick('schlieren')}
             >
               <span className="block transition-all duration-500" style={{ opacity: activePriceList === 'schlieren' ? 1 : 0.7 }}>Schlieren</span>
             </button>
             <button
-              className={`relative px-8 py-3 rounded-full text-lg font-semibold transition-all duration-500 overflow-hidden focus:outline-none border-2 border-purple-400 shadow-md
-                ${activePriceList === 'zurich' ? 'bg-gradient-to-r from-purple-400 to-pink-400 text-white scale-105' : 'bg-white text-purple-600 hover:bg-purple-50'}`}
+              className={`relative px-8 py-3 rounded-full text-lg font-semibold transition-all duration-500 overflow-hidden focus:outline-none border-2 border-pink-400 shadow-md
+                ${activePriceList === 'zurich' ? 'bg-gradient-to-r from-rose-100 to-pink-400 text-white scale-105' : 'bg-white text-pink-600 hover:bg-purple-50'}`}
               onClick={() => handlePriceListClick('zurich')}
             >
               <span className="block transition-all duration-500" style={{ opacity: activePriceList === 'zurich' ? 1 : 0.7 }}>Zurich</span>
