@@ -5,8 +5,10 @@ const Gallery = () => {
     <section id="gallery" className="py-16 px-4 sm:px-6 lg:px-8 bg-white/30">
       <div className="max-w-7xl mx-auto">
         <div className="text-center">
+          <br />
           <h2 className="text-4xl font-bold text-gray-900 mb-4">Gallery</h2>
           <p className="text-xl text-gray-600 mb-8">Coming soon - showcase of our beautiful work for now at:</p>
+          <br />
           <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
             <a
               href="https://www.instagram.com/fancyobeauty.nails?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
@@ -31,6 +33,7 @@ const Gallery = () => {
               <span>@obeauty.nails</span>
             </a>
           </div>
+            <br />
         </div>
       </div>
     </section>

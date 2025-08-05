@@ -7,6 +7,7 @@ const Services = () => {
   return (
     <section id="services" className="py-16 px-4 sm:px-6 lg:px-8 bg-white/30">
       <div className="max-w-7xl mx-auto">
+        <br />
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-gray-900 mb-4">Our Services</h2>
           <p className="text-xl text-gray-600">Discover our range of premium beauty services</p>

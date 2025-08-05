@@ -5,6 +5,7 @@ const Contact = () => {
   return (
     <section id="contact" className="py-16 px-4 sm:px-6 lg:px-8 bg-white/30">
       <div className="max-w-7xl mx-auto">
+        <br />
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-gray-900 mb-4">Contact Us</h2>
           <p className="text-xl text-gray-600">Visit us at one of our convenient locations</p>
@@ -22,7 +23,7 @@ const Contact = () => {
               </div>
               <div className="flex items-center space-x-3">
                 <MessageCircle className="h-5 w-5 text-green-600" />
-                <a href="https://wa.me/41782002699" target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:underline focus:underline outline-none">+41 078 200 26 99</a>
+                <a href="https://wa.me/41782002699" target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:underline focus:underline outline-none">Whatsapp</a>
               </div>
               <div className="flex items-center space-x-3">
                 <MapPin className="h-5 w-5 text-pink-600" />
@@ -70,7 +71,7 @@ const Contact = () => {
               </div>
               <div className="flex items-center space-x-3">
                 <MessageCircle className="h-5 w-5 text-green-600" />
-                <a href="https://wa.me/41779811788" target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:underline focus:underline outline-none">+41 077 981 17 88</a>
+                <a href="https://wa.me/41779811788" target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:underline focus:underline outline-none">Whatsapp</a>
               </div>
               <div className="flex items-center space-x-3">
                 <MapPin className="h-5 w-5 text-purple-600" />
