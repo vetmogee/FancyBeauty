@@ -12,7 +12,7 @@ const Story = () => {
               <h3 className="text-3xl font-bold text-gray-900 mb-4">Our Story</h3>
               <p className="text-gray-600 leading-relaxed mb-6">
                 Founded with passion for beauty and excellence in 2018, FancyBeauty has been transforming nails and enhancing natural beauty 
-                for over a decade. Our team of certified professionals stays updated with the latest trends and techniques to ensure 
+                for almost a decade. Our team of certified professionals stays updated with the latest trends and techniques to ensure 
                 you receive the highest quality service in a relaxing, hygienic environment.
               </p>
               <div className="flex items-center space-x-4">
