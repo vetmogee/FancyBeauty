@@ -18,7 +18,7 @@ export const schlierenPriceList = [
       { name: 'Footlogix', price: 'CHF 90' },
       { name: 'Footlogix with shellac', price: 'CHF 125' },
       { name: 'With shellac french', price: 'CHF 95' },
-    ],
+    ],  
   },
   {
     category: 'Gel/Acrylic Set',

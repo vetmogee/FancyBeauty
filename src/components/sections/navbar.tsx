@@ -51,7 +51,7 @@ const Navbar: React.FC<NavbarProps> = ({
             </button>
           </div>
           {/* Desktop Nav */}
-          <div className="hidden md:block">
+          <div className="hidden lg:block">
             <div className="ml-10 flex items-baseline space-x-8">
               {/* Home Button */}
               <button
@@ -121,7 +121,7 @@ const Navbar: React.FC<NavbarProps> = ({
             </div>
           </div>
           {/* Medium Screen Dropdown Nav */}
-          <div className="block md:hidden ">
+          <div className="block lg:hidden ">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <button className="p-2 rounded-md focus:outline-none">
