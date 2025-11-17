@@ -115,7 +115,7 @@ const AbgPage = () => {
           </ul>
 
           <h2 className="mt-6 mb-2 font-bold text-lg">14. Gültigkeit</h2>
-          <p className="mb-4">Diese Allgemeinen Geschäftsbedingungen gelten ab dem ……………………… und können ohne vorherige Ankündigung geändert werden. Die aktualisierte Version wird auf der offiziellen Website und an der Rezeption veröffentlicht.</p>
+          <p className="mb-4">Diese Allgemeinen Geschäftsbedingungen gelten ab dem 01.01.2021 und können ohne vorherige Ankündigung geändert werden. Die aktualisierte Version wird auf der offiziellen Website und an der Rezeption veröffentlicht.</p>
 
           <p className="mt-6 font-semibold">Vielen Dank für Ihr Vertrauen in OBeauty – Fancy.<br/>
           Wir freuen uns, Sie bedienen zu dürfen!</p>
