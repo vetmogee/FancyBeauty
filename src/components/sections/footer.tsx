@@ -17,7 +17,7 @@ const Footer: React.FC<FooterProps> = ({ scrollToSection }) => {
     }
   };
   return (
-    <footer className="bg-gradient-to-r from-pink-400 to-rose-300 text-black py-12 px-4 sm:px-6 lg:px-8">
+    <footer className="bg-gradient-to-r from-pink-400 to-rose-300 text-white py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <div className="grid md:grid-cols-3 gap-8">
           <div>
@@ -29,12 +29,12 @@ const Footer: React.FC<FooterProps> = ({ scrollToSection }) => {
           
           <div>
             <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
-            <div className="space-y-2">
+            <div className="space-y-2 text-white">
               {['Services', 'Price List', 'Gallery', 'Reviews', 'Contact'].map((link) => (
                 <button
                   key={link}
                   onClick={() => handleNav(link.toLowerCase().replace(' ', ''))}
-                  className="block text-gray-900 hover:text-black transition-colors duration-200"
+                  className="block hover:text-black transition-colors duration-200"
                 >
                   {link}
                 </button>
