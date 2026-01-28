@@ -1,40 +1,37 @@
 
-import { useState, useEffect, useRef } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 import ObeatPL from '../components/sections/obeat_pl';
 import FancyPL from '../components/sections/fancy_pl';
 import Navbar from '../components/sections/navbar';
 import Home from '../components/sections/home';
-import Story from '../components/sections/story';
 import Services from '../components/sections/services';
 import Gallery from '../components/sections/gallery';
 import Reviews from '../components/sections/reviews';
 import Contact from '../components/sections/contact';
 import Footer from '../components/sections/footer';
 import Book from '../components/sections/book';
+import { useSectionTracking } from '../hooks/useSectionTracking';
 
 const Index = () => {
-  const [activeSection, setActiveSection] = useState('home');
   const [activePriceList, setActivePriceList] = useState<'schlieren' | 'zurich'>('schlieren');
-  const location = useLocation();
-  const navigate = useNavigate();
 
-  useEffect(() => {
-    if (location.state && location.state.scrollTo) {
-      scrollToSection(location.state.scrollTo);
-      // Remove scrollTo from state so it doesn't repeat
-      navigate(location.pathname, { replace: true, state: {} });
-    }
-    // eslint-disable-next-line
-  }, [location.state]);
+  const sectionIds = [
+    'home',
+    'book',
+    'services',
+    'pricelist',
+    'gallery',
+    'reviews',
+    'contact',
+  ];
 
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-      setActiveSection(sectionId);
-    }
-  };
+  // Use the section tracking hook with optimized settings
+  const { activeSection, scrollToSection, isScrolling } = useSectionTracking(sectionIds, {
+    rootMargin: '-20% 0px -60% 0px', // Trigger when section is in middle 40% of viewport
+    threshold: 0.5, // Section is active when 50% visible
+    scrollOffset: 100, // Account for navbar height
+    debounceMs: 50,
+  });
 
   const handlePriceListClick = (location: 'schlieren' | 'zurich') => {
     scrollToSection('pricelist');
@@ -45,54 +42,6 @@ const Index = () => {
     scrollToSection('pricelist');
   };
 
-  const sectionIds = [
-    'home',
-    'story',
-    'book',
-    'services',
-    'pricelist',
-    'gallery',
-    'reviews',
-    'contact',
-  ];
-
-  // Track section refs for IntersectionObserver
-  const sectionRefs = useRef<{ [key: string]: HTMLElement | null }>({});
-
-  useEffect(() => {
-    // Set up refs
-    sectionIds.forEach((id) => {
-      sectionRefs.current[id] = document.getElementById(id);
-    });
-    const handleIntersect = (entries: IntersectionObserverEntry[]) => {
-      // Find the entry that is most visible (largest intersectionRatio)
-      let maxRatio = 0;
-      let visibleSection = activeSection;
-      entries.forEach((entry) => {
-        if (entry.isIntersecting && entry.intersectionRatio > maxRatio) {
-          maxRatio = entry.intersectionRatio;
-          visibleSection = entry.target.id;
-        }
-      });
-      if (visibleSection && visibleSection !== activeSection) {
-        setActiveSection(visibleSection);
-      }
-    };
-    const observer = new window.IntersectionObserver(handleIntersect, {
-      root: null,
-      rootMargin: '0px 0px -60% 0px', // Trigger when section is 40% from top
-      threshold: [0.2, 0.4, 0.6, 0.8, 1],
-    });
-    sectionIds.forEach((id) => {
-      const el = sectionRefs.current[id];
-      if (el) observer.observe(el);
-    });
-    return () => {
-      observer.disconnect();
-    };
-    // eslint-disable-next-line
-  }, []);
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-pink-50 via-purple-50 to-indigo-50">
       {/* Navbar */}
@@ -102,13 +51,11 @@ const Index = () => {
         handlePriceListSectionClick={handlePriceListSectionClick}
         activePriceList={activePriceList}
         handlePriceListClick={handlePriceListClick}
+        isScrolling={isScrolling}
       />
 
       {/* Home Section */}
       <Home />
-
-      {/* Story Section */}
-      <Story />
       
       {/* Book Section */}
       <Book />
