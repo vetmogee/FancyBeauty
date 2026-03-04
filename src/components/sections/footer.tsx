@@ -26,7 +26,7 @@ const Footer: React.FC<FooterProps> = ({ scrollToSection }) => {
               Your premier destination for luxury nail care and beauty services in Zurich and Schlieren.
             </p>
           </div>
-          
+
           <div>
             <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
             <div className="space-y-2 text-white">
@@ -51,14 +51,14 @@ const Footer: React.FC<FooterProps> = ({ scrollToSection }) => {
                 onClick={() => navigate('/abg')}
                 className="block text-back-100 hover:text-black transition-colors duration-200"
               >
-                ABG
+                AGB
               </button>
             </div>
           </div>
-          
-          
+
+
         </div>
-        
+
         <div className="mt-12 pt-8 border-t border-pink-200 text-center">
           <p className="text-black-100">
             © 2024 FancyBeauty GmbH. All rights reserved. | Crafted with ❤️ in Switzerland
