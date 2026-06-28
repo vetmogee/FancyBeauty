@@ -124,6 +124,7 @@ const Navbar: React.FC<NavbarProps> = ({
 
   return (
     <nav
+      aria-label="Main navigation"
       className="fixed top-0 w-full bg-[#FAF7F3]/95 backdrop-blur-md z-50 border-b border-gold-400/50 transition-all duration-300"
       style={{ height: '75px' }}
     >
@@ -147,6 +148,7 @@ const Navbar: React.FC<NavbarProps> = ({
               <button
                 key={item.id}
                 onClick={() => handleNav(item.id)}
+                aria-current={isActive(item.id) ? 'true' : undefined}
                 className={`px-4 py-2 text-sm font-raleway font-semibold tracking-[0.18em] uppercase transition-all duration-200 ${
                   isActive(item.id)
                     ? 'text-gold-700 border-b border-gold-700'
