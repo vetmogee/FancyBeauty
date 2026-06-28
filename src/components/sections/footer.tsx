@@ -12,7 +12,7 @@ const Footer: React.FC<FooterProps> = ({ scrollToSection }) => {
   const { t } = useTranslation();
 
   const handleNav = (section: string) => {
-    if (location.pathname === '/abg') {
+    if (location.pathname === '/agb') {
       navigate('/', { state: { scrollTo: section } });
     } else {
       scrollToSection(section);
@@ -54,7 +54,7 @@ const Footer: React.FC<FooterProps> = ({ scrollToSection }) => {
                 </button>
               ))}
               <button
-                onClick={() => navigate('/abg')}
+                onClick={() => navigate('/agb')}
                 className="block hover:text-pink-400 transition-colors duration-200 text-sm tracking-wide"
               >
                 AGB
@@ -64,7 +64,7 @@ const Footer: React.FC<FooterProps> = ({ scrollToSection }) => {
         </div>
 
         <div className="mt-14 pt-8 border-t border-stone-700 text-center">
-          <p className="text-stone-500 font-raleway font-semibold text-xs tracking-wider">
+          <p className="text-stone-400 font-raleway font-semibold text-xs tracking-wider">
             {t('footer_copyright')}
           </p>
         </div>

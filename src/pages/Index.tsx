@@ -45,6 +45,7 @@ const Index = () => {
 
     return (
         <div className="min-h-screen bg-marble">
+            <a href="#main-content" className="skip-link">Skip to main content</a>
             <Navbar
                 activeSection={activeSection}
                 scrollToSection={scrollToSection}
@@ -54,53 +55,55 @@ const Index = () => {
                 isScrolling={isScrolling}
             />
 
-            <Home />
-            <Book />
-            <Services />
+            <main id="main-content">
+                <Home />
+                <Book />
+                <Services />
 
-            <section id="pricelist" className="py-20 px-4 sm:px-6 lg:px-8 bg-stone-50">
-                <div className="max-w-7xl mx-auto">
-                    <div className="text-center mb-10">
-                        <h2 className="text-5xl text-stone-800 mb-3 tracking-wide">{t('price_list_title')}</h2>
-                        <span className="block w-16 h-px bg-gold-400 mx-auto mb-4"></span>
-                        <p className="text-stone-500 font-raleway font-light tracking-wider text-sm uppercase">{t('price_list_subtitle')}</p>
-                    </div>
-
-                    <div className="flex justify-center gap-0 mb-12">
-                        <button
-                            className={`px-10 py-3 text-sm font-raleway font-light tracking-[0.2em] uppercase transition-all duration-300 focus:outline-none border border-pink-400
-                ${activePriceList === 'schlieren' ? 'bg-pink-500 text-white border-pink-500' : 'bg-transparent text-pink-500 hover:bg-pink-50'}`}
-                            onClick={() => handlePriceListClick('schlieren')}
-                        >
-                            {t('location_schlieren')}
-                        </button>
-                        <button
-                            className={`px-10 py-3 text-sm font-raleway font-light tracking-[0.2em] uppercase transition-all duration-300 focus:outline-none border border-pink-400 border-l-0
-                ${activePriceList === 'zurich' ? 'bg-pink-500 text-white border-pink-500' : 'bg-transparent text-pink-500 hover:bg-pink-50'}`}
-                            onClick={() => handlePriceListClick('zurich')}
-                        >
-                            {t('location_zurich')}
-                        </button>
-                    </div>
-
-                    <div className="relative">
-                        <div
-                            className={`transition-all duration-700 ${activePriceList === 'schlieren' ? 'opacity-100 translate-x-0 z-10' : 'opacity-0 -translate-x-10 z-0 absolute w-full'} pointer-events-${activePriceList === 'schlieren' ? 'auto' : 'none'}`}
-                        >
-                            <ObeatPL />
+                <section id="pricelist" aria-labelledby="pricelist-title" className="py-20 px-4 sm:px-6 lg:px-8 bg-stone-50">
+                    <div className="max-w-7xl mx-auto">
+                        <div className="text-center mb-10">
+                            <h2 id="pricelist-title" className="text-5xl text-stone-800 mb-3 tracking-wide">{t('price_list_title')}</h2>
+                            <span className="block w-16 h-px bg-gold-400 mx-auto mb-4"></span>
+                            <p className="text-stone-600 font-raleway font-light tracking-wider text-sm uppercase">{t('price_list_subtitle')}</p>
                         </div>
-                        <div
-                            className={`transition-all duration-700 ${activePriceList === 'zurich' ? 'opacity-100 translate-x-0 z-10' : 'opacity-0 translate-x-10 z-0 absolute w-full'} pointer-events-${activePriceList === 'zurich' ? 'auto' : 'none'}`}
-                        >
-                            <FancyPL />
+
+                        <div className="flex justify-center gap-0 mb-12">
+                            <button
+                                className={`px-10 py-3 text-sm font-raleway font-light tracking-[0.2em] uppercase transition-all duration-300 focus:outline-none border border-pink-400
+                ${activePriceList === 'schlieren' ? 'bg-pink-600 text-white border-pink-600' : 'bg-transparent text-pink-600 hover:bg-pink-50'}`}
+                                onClick={() => handlePriceListClick('schlieren')}
+                            >
+                                {t('location_schlieren')}
+                            </button>
+                            <button
+                                className={`px-10 py-3 text-sm font-raleway font-light tracking-[0.2em] uppercase transition-all duration-300 focus:outline-none border border-pink-400 border-l-0
+                ${activePriceList === 'zurich' ? 'bg-pink-600 text-white border-pink-600' : 'bg-transparent text-pink-600 hover:bg-pink-50'}`}
+                                onClick={() => handlePriceListClick('zurich')}
+                            >
+                                {t('location_zurich')}
+                            </button>
+                        </div>
+
+                        <div className="relative">
+                            <div
+                                className={`transition-all duration-700 ${activePriceList === 'schlieren' ? 'opacity-100 translate-x-0 z-10' : 'opacity-0 -translate-x-10 z-0 absolute w-full'} pointer-events-${activePriceList === 'schlieren' ? 'auto' : 'none'}`}
+                            >
+                                <ObeatPL />
+                            </div>
+                            <div
+                                className={`transition-all duration-700 ${activePriceList === 'zurich' ? 'opacity-100 translate-x-0 z-10' : 'opacity-0 translate-x-10 z-0 absolute w-full'} pointer-events-${activePriceList === 'zurich' ? 'auto' : 'none'}`}
+                            >
+                                <FancyPL />
+                            </div>
                         </div>
                     </div>
-                </div>
-            </section>
+                </section>
 
-            <Gallery />
-            <Reviews />
-            <Contact />
+                <Gallery />
+                <Reviews />
+                <Contact />
+            </main>
             <Footer scrollToSection={scrollToSection} />
         </div>
     );

@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -10,12 +12,26 @@ import { SpeedInsights } from '@vercel/speed-insights/react';
 
 const queryClient = new QueryClient();
 
+const LangSync = () => {
+  const { i18n } = useTranslation();
+  useEffect(() => {
+    const syncLang = (lng: string) => {
+      document.documentElement.lang = lng.startsWith('de') ? 'de' : 'en';
+    };
+    syncLang(i18n.language);
+    i18n.on('languageChanged', syncLang);
+    return () => { i18n.off('languageChanged', syncLang); };
+  }, [i18n]);
+  return null;
+};
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <LangSync />
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/agb" element={<AgbPage />} />

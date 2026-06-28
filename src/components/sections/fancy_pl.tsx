@@ -96,7 +96,7 @@ const FancyPL: React.FC<FancyPLProps> = ({ filter = 'all' }) => {
           <button
             key={s.category}
             onClick={() => scrollToCategory(s.category)}
-            className="px-5 py-2 text-xs font-raleway font-semibold tracking-[0.15em] uppercase text-pink-600 bg-transparent border border-pink-400 hover:bg-pink-500 hover:text-white hover:border-pink-500 transition-colors duration-200"
+            className="px-5 py-2 text-xs font-raleway font-semibold tracking-[0.15em] uppercase text-pink-600 bg-transparent border border-pink-400 hover:bg-pink-600 hover:text-white hover:border-pink-600 transition-colors duration-200"
           >
             {t(s.categoryKey)}
           </button>
@@ -115,7 +115,7 @@ const FancyPL: React.FC<FancyPLProps> = ({ filter = 'all' }) => {
             <div className="space-y-3">
               {section.category === 'Gel/Acrylic Set' ? (
                 <>
-                  <div className="flex justify-between items-center py-2 border-b border-gold-100 text-stone-400 font-raleway font-semibold text-xs uppercase tracking-wider">
+                  <div className="flex justify-between items-center py-2 border-b border-gold-100 text-stone-600 font-raleway font-semibold text-xs uppercase tracking-wider">
                     <span className="flex-1">{t('pl_col_service')}</span>
                     <span className="text-center flex-1">{t('pl_col_refill')}</span>
                     <span className="text-center flex-1">{t('pl_col_new')}</span>
@@ -123,8 +123,8 @@ const FancyPL: React.FC<FancyPLProps> = ({ filter = 'all' }) => {
                   {section.items.map((item, i) => (
                     <div key={i} className="flex justify-between items-center py-2 border-b border-stone-50 last:border-b-0">
                       <span className="text-stone-600 font-raleway font-semibold flex-1 text-sm">{t(item.nameKey)}</span>
-                      <span className="text-pink-500 font-raleway font-semibold text-center flex-1 text-sm">{item.refillPrice}</span>
-                      <span className="text-pink-500 font-raleway font-semibold text-center flex-1 text-sm">{item.newPrice}</span>
+                      <span className="text-pink-600 font-raleway font-semibold text-center flex-1 text-sm">{item.refillPrice}</span>
+                      <span className="text-pink-600 font-raleway font-semibold text-center flex-1 text-sm">{item.newPrice}</span>
                     </div>
                   ))}
                 </>
@@ -132,7 +132,7 @@ const FancyPL: React.FC<FancyPLProps> = ({ filter = 'all' }) => {
                 section.items.map((item, i) => (
                   <div key={i} className="flex justify-between items-center py-2 border-b border-stone-50 last:border-b-0">
                     <span className="text-stone-600 font-raleway font-semibold text-sm">{t(item.nameKey)}</span>
-                    <span className="text-pink-500 font-raleway font-semibold text-sm">{item.price}</span>
+                    <span className="text-pink-600 font-raleway font-semibold text-sm">{item.price}</span>
                   </div>
                 ))
               )}

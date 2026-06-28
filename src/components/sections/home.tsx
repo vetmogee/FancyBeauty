@@ -8,7 +8,7 @@ const Home = () => {
   const { t } = useTranslation();
 
   return (
-    <section id="home" className="mt-[75px]">
+    <section id="home" aria-labelledby="home-title" className="mt-[75px]">
       {/* Hero */}
       <div className="relative overflow-hidden h-96 lg:h-[900px] md:h-[500px]">
         <div className="absolute inset-0">
@@ -22,9 +22,9 @@ const Home = () => {
         <div className="absolute bottom-0 left-0 right-0 h-px bg-gold-400"></div>
         <div className="relative z-10 text-center px-8 flex flex-col justify-center items-center h-full gap-5">
           <p className="text-gold-300 font-raleway font-semibold tracking-[0.35em] uppercase text-xs">{t('home_tagline')}</p>
-          <h2 className="text-6xl lg:text-8xl text-white tracking-wider leading-none">
+          <h1 id="home-title" className="text-6xl lg:text-8xl text-white tracking-wider leading-none">
             FancyBeauty
-          </h2>
+          </h1>
           <span className="block w-20 h-px bg-gold-400 mx-auto"></span>
         </div>
       </div>
@@ -34,14 +34,14 @@ const Home = () => {
         <div className="bg-white border border-stone-100 p-10 shadow-sm">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
-              <p className="text-gold-500 font-raleway font-semibold tracking-[0.25em] uppercase text-xs mb-4">{t('home_since')}</p>
-              <h3 className="text-4xl text-stone-800 mb-5 tracking-wide">{t('home_story_title')}</h3>
+              <p className="text-gold-700 font-raleway font-semibold tracking-[0.25em] uppercase text-xs mb-4">{t('home_since')}</p>
+              <h2 id="home-story-title" className="text-4xl text-stone-800 mb-5 tracking-wide">{t('home_story_title')}</h2>
               <span className="block w-12 h-px bg-gold-400 mb-6"></span>
-              <p className="text-stone-500 font-raleway font-semibold leading-relaxed mb-8 text-sm">
+              <p className="text-stone-600 font-raleway font-semibold leading-relaxed mb-8 text-sm">
                 {t('home_story_text')}
               </p>
               <div className="flex items-center space-x-3">
-                <div className="flex text-pink-400">
+                <div className="flex text-pink-400" aria-hidden="true">
                   {[...Array(5)].map((_, i) => {
                     const rating = 4.25;
                     const starValue = i + 1;
@@ -61,13 +61,13 @@ const Home = () => {
                     );
                   })}
                 </div>
-                <span className="text-stone-400 font-raleway font-semibold text-xs tracking-wider">{t('home_rating')}</span>
+                <span className="text-stone-600 font-raleway font-semibold text-xs tracking-wider">{t('home_rating')}</span>
               </div>
             </div>
             <div className="relative">
               <img
                 src={storypic}
-                alt="FancyBeauty Salon Interior"
+                alt="Nail technician at work in FancyBeauty studio"
                 className="w-full h-80 object-cover shadow-lg"
               />
               <div className="absolute -bottom-2 -right-2 w-6 h-6 border-b-2 border-r-2 border-gold-400"></div>

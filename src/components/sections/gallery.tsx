@@ -5,12 +5,12 @@ const Gallery = () => {
   const { t } = useTranslation();
 
   return (
-    <section id="gallery" className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+    <section id="gallery" aria-labelledby="gallery-title" className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
       <div className="max-w-7xl mx-auto">
         <div className="text-center">
-          <h2 className="text-5xl text-stone-800 mb-3 tracking-wide">{t('gallery_title')}</h2>
+          <h2 id="gallery-title" className="text-5xl text-stone-800 mb-3 tracking-wide">{t('gallery_title')}</h2>
           <span className="block w-16 h-px bg-gold-400 mx-auto mb-4"></span>
-          <p className="text-stone-400 font-raleway font-semibold tracking-wider text-sm uppercase mb-8">
+          <p className="text-stone-600 font-raleway font-semibold tracking-wider text-sm uppercase mb-8">
             {t('gallery_subtitle')}
           </p>
           <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
