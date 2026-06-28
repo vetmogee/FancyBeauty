@@ -21,12 +21,12 @@ const Reviews = () => {
   const { t } = useTranslation();
 
   return (
-    <section id="reviews" className="py-20 px-4 sm:px-6 lg:px-8 bg-marble">
+    <section id="reviews" aria-labelledby="reviews-title" className="py-20 px-4 sm:px-6 lg:px-8 bg-marble">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-14">
-          <h2 className="text-5xl text-stone-800 mb-3 tracking-wide">{t('reviews_title')}</h2>
+          <h2 id="reviews-title" className="text-5xl text-stone-800 mb-3 tracking-wide">{t('reviews_title')}</h2>
           <span className="block w-16 h-px bg-gold-400 mx-auto mb-4"></span>
-          <p className="text-stone-400 font-raleway font-semibold tracking-wider text-sm uppercase">{t('reviews_subtitle')}</p>
+          <p className="text-stone-600 font-raleway font-semibold tracking-wider text-sm uppercase">{t('reviews_subtitle')}</p>
         </div>
 
         <div className="grid md:grid-cols-3 gap-6">
@@ -37,7 +37,7 @@ const Reviews = () => {
                   <Star key={i} className="h-4 w-4 fill-current" />
                 ))}
               </div>
-              <p className="text-stone-500 font-raleway font-semibold leading-relaxed mb-6 text-sm italic">
+              <p className="text-stone-600 font-raleway font-semibold leading-relaxed mb-6 text-sm italic">
                 "{r.text}"
               </p>
               <span className="block w-6 h-px bg-gold-300 mb-4"></span>

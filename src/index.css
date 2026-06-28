@@ -100,6 +100,33 @@
   }
 }
 
+/* WCAG 2.4.7 — focus ring via box-shadow (not overridden by focus:outline-none) */
+*:focus-visible {
+  box-shadow: 0 0 0 2px #FAF7F3, 0 0 0 4px #7A5F06;
+  border-radius: 2px;
+}
+
+/* WCAG 2.4.1 — skip navigation link */
+.skip-link {
+  position: fixed;
+  top: -100%;
+  left: 0;
+  z-index: 9999;
+  background: #fff;
+  color: #7A5F06;
+  padding: 12px 24px;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 600;
+  font-size: 0.875rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border: 2px solid #7A5F06;
+  text-decoration: none;
+}
+.skip-link:focus {
+  top: 0;
+}
+
 /* Marble background utility */
 .bg-marble {
   background-color: #FAF7F3;

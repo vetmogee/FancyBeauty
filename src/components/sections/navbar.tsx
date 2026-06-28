@@ -34,7 +34,7 @@ const Navbar: React.FC<NavbarProps> = ({
   const langRef = useRef<HTMLDivElement>(null);
 
   const handleNav = (section: string) => {
-    if (location.pathname === '/abg') {
+    if (location.pathname === '/agb') {
       navigate('/', { state: { scrollTo: section } });
     } else {
       scrollToSection(section);
@@ -86,7 +86,7 @@ const Navbar: React.FC<NavbarProps> = ({
           }
           [data-radix-popper-content-wrapper] > div [role="menuitem"],
           [data-radix-popper-content-wrapper] > div button[role="menuitem"] {
-            color: #a17f3d !important;
+            color: #7A5F06 !important;
             font-weight: 600 !important;
             font-family: 'Raleway', sans-serif !important;
             letter-spacing: 0.15em !important;
@@ -95,8 +95,8 @@ const Navbar: React.FC<NavbarProps> = ({
           }
           [data-radix-popper-content-wrapper] > div [role="menuitem"]:hover,
           [data-radix-popper-content-wrapper] > div button[role="menuitem"]:hover {
-            background-color: rgba(161, 127, 61, 0.08) !important;
-            color: #a17f3d !important;
+            background-color: rgba(122, 95, 6, 0.08) !important;
+            color: #7A5F06 !important;
           }
         }
         [data-radix-popper-content-wrapper] > div[data-state="open"] {
@@ -149,41 +149,43 @@ const Navbar: React.FC<NavbarProps> = ({
                 onClick={() => handleNav(item.id)}
                 className={`px-4 py-2 text-sm font-raleway font-semibold tracking-[0.18em] uppercase transition-all duration-200 ${
                   isActive(item.id)
-                    ? 'text-[#a17f3d] border-b border-[#a17f3d]'
-                    : 'text-stone-500 hover:text-[#a17f3d]'
+                    ? 'text-gold-700 border-b border-gold-700'
+                    : 'text-stone-700 hover:text-gold-700'
                 }`}
               >
                 {item.label}
               </button>
             ))}
             <button
-              onClick={() => navigate('/AGB')}
-              className="px-4 py-2 text-sm font-raleway font-semibold tracking-[0.18em] uppercase transition-all duration-200 text-stone-500 hover:text-[#a17f3d]"
+              onClick={() => navigate('/agb')}
+              className="px-4 py-2 text-sm font-raleway font-semibold tracking-[0.18em] uppercase transition-all duration-200 text-stone-700 hover:text-gold-700"
             >
               AGB
             </button>
           </div>
 
-          {/* Desktop Right: Language Switcher */}
+          {/* Desktop Language Switcher */}
           <div className="hidden lg:flex items-center" ref={langRef}>
-            <div className="flex items-center gap-0 border border-gold-300">
+            <div className="flex items-center gap-0 border border-gold-700">
               <button
                 onClick={() => { i18n.changeLanguage('en'); setIsLangOpen(false); }}
+                aria-label="Switch to English"
                 className={`px-3 py-1 text-xs font-raleway font-semibold tracking-[0.15em] uppercase transition-colors duration-200 ${
                   i18n.language.startsWith('en')
-                    ? 'bg-[#a17f3d] text-white'
-                    : 'text-[#a17f3d] hover:bg-gold-50'
+                    ? 'bg-gold-700 text-white'
+                    : 'text-gold-700 hover:bg-gold-50'
                 }`}
               >
                 EN
               </button>
-              <div className="w-px h-4 bg-gold-300" />
+              <div className="w-px h-4 bg-gold-700" />
               <button
                 onClick={() => { i18n.changeLanguage('de'); setIsLangOpen(false); }}
+                aria-label="Switch to German"
                 className={`px-3 py-1 text-xs font-raleway font-semibold tracking-[0.15em] uppercase transition-colors duration-200 ${
                   i18n.language.startsWith('de')
-                    ? 'bg-[#a17f3d] text-white'
-                    : 'text-[#a17f3d] hover:bg-gold-50'
+                    ? 'bg-gold-700 text-white'
+                    : 'text-gold-700 hover:bg-gold-50'
                 }`}
               >
                 DE
@@ -196,7 +198,7 @@ const Navbar: React.FC<NavbarProps> = ({
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <button className="focus:outline-none" aria-label="Open menu">
-                  <Menu className="h-5 w-5 text-gold-500" />
+                  <Menu className="h-5 w-5 text-gold-700" />
                 </button>
               </DropdownMenuTrigger>
               <DropdownMenuContent
@@ -208,38 +210,40 @@ const Navbar: React.FC<NavbarProps> = ({
                   <DropdownMenuItem
                     key={item.id}
                     onSelect={() => handleNav(item.id)}
-                    className="py-3 text-center justify-center text-[#a17f3d]"
+                    className="py-3 text-center justify-center text-gold-700"
                   >
                     {item.label}
                   </DropdownMenuItem>
                 ))}
                 <DropdownMenuItem
                   onSelect={() => navigate('/agb')}
-                  className="py-3 text-center justify-center text-[#a17f3d]"
+                  className="py-3 text-center justify-center text-gold-700"
                 >
                   AGB
                 </DropdownMenuItem>
 
                 {/* Mobile Language Switcher */}
                 <div className="py-4 flex justify-center border-t border-gold-100 mt-1">
-                  <div className="flex items-center gap-0 border border-gold-300">
+                  <div className="flex items-center gap-0 border border-gold-700">
                     <button
                       onClick={() => i18n.changeLanguage('en')}
+                      aria-label="Switch to English"
                       className={`px-4 py-1 text-xs font-raleway font-semibold tracking-[0.15em] uppercase transition-colors duration-200 ${
                         i18n.language.startsWith('en')
-                          ? 'bg-[#a17f3d] text-white'
-                          : 'text-[#a17f3d] hover:bg-gold-50'
+                          ? 'bg-gold-700 text-white'
+                          : 'text-gold-700 hover:bg-gold-50'
                       }`}
                     >
                       EN
                     </button>
-                    <div className="w-px h-4 bg-gold-300" />
+                    <div className="w-px h-4 bg-gold-700" />
                     <button
                       onClick={() => i18n.changeLanguage('de')}
+                      aria-label="Switch to German"
                       className={`px-4 py-1 text-xs font-raleway font-semibold tracking-[0.15em] uppercase transition-colors duration-200 ${
                         i18n.language.startsWith('de')
-                          ? 'bg-[#a17f3d] text-white'
-                          : 'text-[#a17f3d] hover:bg-gold-50'
+                          ? 'bg-gold-700 text-white'
+                          : 'text-gold-700 hover:bg-gold-50'
                       }`}
                     >
                       DE

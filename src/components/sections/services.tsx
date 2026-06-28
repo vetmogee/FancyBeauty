@@ -29,12 +29,12 @@ const Services = () => {
   ];
 
   return (
-    <section id="services" className="py-20 px-4 sm:px-6 lg:px-8 bg-marble">
+    <section id="services" aria-labelledby="services-title" className="py-20 px-4 sm:px-6 lg:px-8 bg-marble">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-14">
-          <h2 className="text-5xl text-stone-800 mb-3 tracking-wide">{t('services_title')}</h2>
+          <h2 id="services-title" className="text-5xl text-stone-800 mb-3 tracking-wide">{t('services_title')}</h2>
           <span className="block w-16 h-px bg-gold-400 mx-auto mb-4"></span>
-          <p className="text-stone-400 font-raleway font-semibold tracking-wider text-sm uppercase">{t('services_subtitle')}</p>
+          <p className="text-stone-600 font-raleway font-semibold tracking-wider text-sm uppercase">{t('services_subtitle')}</p>
         </div>
 
         <div className="grid md:grid-cols-3 gap-6">
@@ -50,7 +50,7 @@ const Services = () => {
               <div className="p-7">
                 <span className="block w-6 h-px bg-gold-400 mb-4"></span>
                 <h3 className="text-2xl text-stone-800 mb-3 tracking-wide">{s.title}</h3>
-                <p className="text-stone-500 font-raleway font-semibold leading-relaxed text-sm">{s.text}</p>
+                <p className="text-stone-600 font-raleway font-semibold leading-relaxed text-sm">{s.text}</p>
               </div>
             </div>
           ))}
