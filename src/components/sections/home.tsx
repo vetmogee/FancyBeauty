@@ -2,86 +2,76 @@ import React from 'react';
 import homeimg from '../../assets/homeimg.png';
 import storypic from '../../assets/storypic.png';
 import { Star } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 const Home = () => {
+  const { t } = useTranslation();
+
   return (
-    <section id="home" className="mt-16">
-      <div className="">
-        <div className="relative overflow-hidden shadow-2xl h-96 lg:h-[900px] md:h-[500px] ">
-          {/* Background Image with Dark Overlay */}
-          <div className="absolute inset-0 ">
-            <img 
-              src={homeimg} 
-              alt="FancyBeauty Salon Interior" 
-              className="w-full h-full object-cover unoptimized"
-            />
-            <div className="absolute inset-0 bg-black/50"></div>
-          </div>
-          
-          {/* Content */}
-          <div className="relative z-10 text-center px-8 flex flex-col justify-center items-center h-full">
-            <h2 className="text-5xl font-bold text-white mb-6">
-              Welcome to <span className="bg-gradient-to-r from-pink-400 to-rose-300 bg-clip-text text-transparent">FancyBeauty</span>
-            </h2>
-            {/* <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              Step into a world of luxury and elegance at FancyBeauty, where your nails become a canvas of art. 
-              Our expert technicians combine creativity with precision to deliver stunning nail designs that reflect your unique style. 
-              From classic manicures to intricate nail art and luxurious lash extensions, we offer a complete beauty experience 
-              in our state-of-the-art salon facilities in Zurich and Schlieren.
-            </p> */}
-          </div>
+    <section id="home" className="mt-[75px]">
+      {/* Hero */}
+      <div className="relative overflow-hidden h-96 lg:h-[900px] md:h-[500px]">
+        <div className="absolute inset-0">
+          <img
+            src={homeimg}
+            alt="FancyBeauty Salon Interior"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-black/50"></div>
+        </div>
+        <div className="absolute bottom-0 left-0 right-0 h-px bg-gold-400"></div>
+        <div className="relative z-10 text-center px-8 flex flex-col justify-center items-center h-full gap-5">
+          <p className="text-gold-300 font-raleway font-semibold tracking-[0.35em] uppercase text-xs">{t('home_tagline')}</p>
+          <h2 className="text-6xl lg:text-8xl text-white tracking-wider leading-none">
+            FancyBeauty
+          </h2>
+          <span className="block w-20 h-px bg-gold-400 mx-auto"></span>
         </div>
       </div>
-      
+
+      {/* Our Story */}
       <div className="max-w-7xl mx-auto px-5 py-20">
-        <div className="bg-white/70 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-pink-100">
-          <div className="grid md:grid-cols-2 gap-8 items-center">
+        <div className="bg-white border border-stone-100 p-10 shadow-sm">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
-              <h3 className="text-3xl font-bold text-gray-900 mb-4">Our Story</h3>
-              <p className="text-gray-600 leading-relaxed mb-6">
-                Founded with passion for beauty and excellence in 2018, FancyBeauty has been transforming nails and enhancing natural beauty 
-                for almost a decade. Our team of certified professionals stays updated with the latest trends and techniques to ensure 
-                you receive the highest quality service in a relaxing, hygienic environment.
+              <p className="text-gold-500 font-raleway font-semibold tracking-[0.25em] uppercase text-xs mb-4">{t('home_since')}</p>
+              <h3 className="text-4xl text-stone-800 mb-5 tracking-wide">{t('home_story_title')}</h3>
+              <span className="block w-12 h-px bg-gold-400 mb-6"></span>
+              <p className="text-stone-500 font-raleway font-semibold leading-relaxed mb-8 text-sm">
+                {t('home_story_text')}
               </p>
-              <div className="flex items-center space-x-4">
-                <div className="flex text-yellow-400">
+              <div className="flex items-center space-x-3">
+                <div className="flex text-pink-400">
                   {[...Array(5)].map((_, i) => {
                     const rating = 4.25;
                     const starValue = i + 1;
-                    // For each star, fillPercentage is:
-                    // 1 for full, 0.25 for quarter, 0 for empty
                     let fillPercentage = 0;
-                    if (rating >= starValue) {
-                      fillPercentage = 1;
-                    } else if (rating > i) {
-                      fillPercentage = rating - i;
-                    }
-                    // Snap to 0.25 increments for visual accuracy
+                    if (rating >= starValue) fillPercentage = 1;
+                    else if (rating > i) fillPercentage = rating - i;
                     fillPercentage = Math.round(fillPercentage * 4) / 4;
                     return (
                       <div key={i} className="relative">
-                        <Star className="h-5 w-5 text-gray-300" />
+                        <Star className="h-4 w-4 text-stone-200" />
                         {fillPercentage > 0 && (
-                          <div 
-                            className="absolute inset-0 overflow-hidden"
-                            style={{ width: `${fillPercentage * 100}%` }}
-                          >
-                            <Star className="h-5 w-5 fill-current" />
+                          <div className="absolute inset-0 overflow-hidden" style={{ width: `${fillPercentage * 100}%` }}>
+                            <Star className="h-4 w-4 fill-current" />
                           </div>
                         )}
                       </div>
                     );
                   })}
                 </div>
-                <span className="text-gray-600">Rated 4.35/5 by our clients</span>
+                <span className="text-stone-400 font-raleway font-semibold text-xs tracking-wider">{t('home_rating')}</span>
               </div>
             </div>
             <div className="relative">
-              <img 
+              <img
                 src={storypic}
-                alt="FancyBeauty Salon Interior" 
-                className="rounded-2xl shadow-2xl w-full h-80 object-cover"
+                alt="FancyBeauty Salon Interior"
+                className="w-full h-80 object-cover shadow-lg"
               />
+              <div className="absolute -bottom-2 -right-2 w-6 h-6 border-b-2 border-r-2 border-gold-400"></div>
+              <div className="absolute -top-2 -left-2 w-6 h-6 border-t-2 border-l-2 border-gold-400"></div>
             </div>
           </div>
         </div>
@@ -90,4 +80,4 @@ const Home = () => {
   );
 };
 
-export default Home; 
+export default Home;

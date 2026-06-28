@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 interface FooterProps {
   scrollToSection: (sectionId: string) => void;
@@ -8,7 +9,8 @@ interface FooterProps {
 const Footer: React.FC<FooterProps> = ({ scrollToSection }) => {
   const navigate = useNavigate();
   const location = useLocation();
-  // Helper for nav buttons: if on /abg, navigate home and pass section; else, scroll
+  const { t } = useTranslation();
+
   const handleNav = (section: string) => {
     if (location.pathname === '/abg') {
       navigate('/', { state: { scrollTo: section } });
@@ -16,52 +18,54 @@ const Footer: React.FC<FooterProps> = ({ scrollToSection }) => {
       scrollToSection(section);
     }
   };
+
+  const links = [
+    { id: 'services', label: t('nav_services') },
+    { id: 'pricelist', label: t('nav_pricelist') },
+    { id: 'gallery', label: t('nav_gallery') },
+    { id: 'reviews', label: t('nav_reviews') },
+    { id: 'contact', label: t('nav_contact') },
+    { id: 'book', label: t('nav_book') },
+  ];
+
   return (
-    <footer className="bg-gradient-to-r from-pink-400 to-rose-300 text-white py-12 px-4 sm:px-6 lg:px-8">
+    <footer className="bg-[#1C1714] text-white py-16 px-4 sm:px-6 lg:px-8 border-t border-gold-500/30">
       <div className="max-w-7xl mx-auto">
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-3 gap-10">
           <div>
-            <h3 className="text-2xl font-bold mb-4">FancyBeauty</h3>
-            <p className="text-black-100 leading-relaxed">
-              Your premier destination for luxury nail care and beauty services in Zurich and Schlieren.
+            <span className="block w-8 h-px bg-gold-400 mb-5"></span>
+            <h3 className="text-3xl text-white mb-4 tracking-wide">FancyBeauty</h3>
+            <p className="text-stone-400 font-raleway font-semibold leading-relaxed text-sm">
+              {t('footer_tagline')}
             </p>
           </div>
 
           <div>
-            <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
-            <div className="space-y-2 text-white">
-              {['Services', 'Price List', 'Gallery', 'Reviews', 'Contact'].map((link) => (
+            <span className="block w-8 h-px bg-gold-400 mb-5"></span>
+            <h4 className="text-gold-400 font-raleway font-semibold tracking-[0.2em] uppercase text-xs mb-5">{t('footer_quick_links')}</h4>
+            <div className="space-y-3 text-stone-400 font-raleway font-semibold">
+              {links.map(({ id, label }) => (
                 <button
-                  key={link}
-                  onClick={() => handleNav(link.toLowerCase().replace(' ', ''))}
-                  className="block hover:text-black transition-colors duration-200"
+                  key={id}
+                  onClick={() => handleNav(id)}
+                  className="block hover:text-pink-400 transition-colors duration-200 text-sm tracking-wide"
                 >
-                  {link}
+                  {label}
                 </button>
               ))}
-              {/* Book Button */}
-              <button
-                onClick={() => handleNav('book')}
-                className="block text-back-100 hover:text-black transition-colors duration-200"
-              >
-                Book
-              </button>
-              {/* ABG Page Button */}
               <button
                 onClick={() => navigate('/abg')}
-                className="block text-back-100 hover:text-black transition-colors duration-200"
+                className="block hover:text-pink-400 transition-colors duration-200 text-sm tracking-wide"
               >
                 AGB
               </button>
             </div>
           </div>
-
-
         </div>
 
-        <div className="mt-12 pt-8 border-t border-pink-200 text-center">
-          <p className="text-black-100">
-            © 2024 FancyBeauty GmbH. All rights reserved. | Crafted with ❤️ in Switzerland
+        <div className="mt-14 pt-8 border-t border-stone-700 text-center">
+          <p className="text-stone-500 font-raleway font-semibold text-xs tracking-wider">
+            {t('footer_copyright')}
           </p>
         </div>
       </div>
@@ -69,4 +73,4 @@ const Footer: React.FC<FooterProps> = ({ scrollToSection }) => {
   );
 };
 
-export default Footer; 
+export default Footer;

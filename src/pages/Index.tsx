@@ -27,11 +27,10 @@ const Index = () => {
         'contact',
     ];
 
-    // Use the section tracking hook with optimized settings
     const { activeSection, scrollToSection, isScrolling } = useSectionTracking(sectionIds, {
-        rootMargin: '-20% 0px -60% 0px', // Trigger when section is in middle 40% of viewport
-        threshold: 0.5, // Section is active when 50% visible
-        scrollOffset: 100, // Account for navbar height
+        rootMargin: '-20% 0px -60% 0px',
+        threshold: 0.5,
+        scrollOffset: 100,
         debounceMs: 50,
     });
 
@@ -45,8 +44,7 @@ const Index = () => {
     };
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-pink-50 via-purple-50 to-indigo-50">
-            {/* Navbar */}
+        <div className="min-h-screen bg-marble">
             <Navbar
                 activeSection={activeSection}
                 scrollToSection={scrollToSection}
@@ -56,41 +54,34 @@ const Index = () => {
                 isScrolling={isScrolling}
             />
 
-            {/* Home Section */}
             <Home />
-
-            {/* Book Section */}
             <Book />
-
-            {/* Services Section */}
             <Services />
 
-            {/* Price List Section */}
-            <section id="pricelist" className="py-16 px-4 sm:px-6 lg:px-8">
+            <section id="pricelist" className="py-20 px-4 sm:px-6 lg:px-8 bg-stone-50">
                 <div className="max-w-7xl mx-auto">
-                    <br />
-                    <div className="text-center mb-8">
-                        <h2 className="text-4xl font-bold text-gray-900 mb-4">{t('price_list_title')}</h2>
-                        <p className="text-xl text-gray-600">{t('price_list_subtitle')}</p>
+                    <div className="text-center mb-10">
+                        <h2 className="text-5xl text-stone-800 mb-3 tracking-wide">{t('price_list_title')}</h2>
+                        <span className="block w-16 h-px bg-gold-400 mx-auto mb-4"></span>
+                        <p className="text-stone-500 font-raleway font-light tracking-wider text-sm uppercase">{t('price_list_subtitle')}</p>
                     </div>
 
-                    <div className="flex justify-center gap-6 mb-10">
+                    <div className="flex justify-center gap-0 mb-12">
                         <button
-                            className={`relative px-8 py-3 rounded-full text-lg font-semibold transition-all duration-500 overflow-hidden focus:outline-none border-2 border-pink-400 shadow-md
-                ${activePriceList === 'schlieren' ? 'bg-gradient-to-r from-pink-400 to-rose-300 text-white scale-105' : 'bg-white text-pink-600 hover:bg-pink-50'}`}
+                            className={`px-10 py-3 text-sm font-raleway font-light tracking-[0.2em] uppercase transition-all duration-300 focus:outline-none border border-pink-400
+                ${activePriceList === 'schlieren' ? 'bg-pink-500 text-white border-pink-500' : 'bg-transparent text-pink-500 hover:bg-pink-50'}`}
                             onClick={() => handlePriceListClick('schlieren')}
                         >
-                            <span className="block transition-all duration-500" style={{ opacity: activePriceList === 'schlieren' ? 1 : 0.7 }}>{t('location_schlieren')}</span>
+                            {t('location_schlieren')}
                         </button>
                         <button
-                            className={`relative px-8 py-3 rounded-full text-lg font-semibold transition-all duration-500 overflow-hidden focus:outline-none border-2 border-pink-400 shadow-md
-                ${activePriceList === 'zurich' ? 'bg-gradient-to-r from-rose-100 to-pink-400 text-white scale-105' : 'bg-white text-pink-600 hover:bg-purple-50'}`}
+                            className={`px-10 py-3 text-sm font-raleway font-light tracking-[0.2em] uppercase transition-all duration-300 focus:outline-none border border-pink-400 border-l-0
+                ${activePriceList === 'zurich' ? 'bg-pink-500 text-white border-pink-500' : 'bg-transparent text-pink-500 hover:bg-pink-50'}`}
                             onClick={() => handlePriceListClick('zurich')}
                         >
-                            <span className="block transition-all duration-500" style={{ opacity: activePriceList === 'zurich' ? 1 : 0.7 }}>{t('location_zurich')}</span>
+                            {t('location_zurich')}
                         </button>
                     </div>
-
 
                     <div className="relative">
                         <div
@@ -107,16 +98,9 @@ const Index = () => {
                 </div>
             </section>
 
-            {/* Gallery Section */}
             <Gallery />
-
-            {/* Reviews Section */}
             <Reviews />
-
-            {/* Contact Section */}
             <Contact />
-
-            {/* Footer */}
             <Footer scrollToSection={scrollToSection} />
         </div>
     );

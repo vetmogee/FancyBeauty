@@ -217,8 +217,7 @@ const AbgPage = () => {
     const isEnglish = i18n.language.startsWith('en');
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-pink-50 via-purple-50 to-indigo-50">
-            {/* Navbar with all buttons routing to home */}
+        <div className="min-h-screen bg-stone-50">
             <Navbar
                 activeSection={''}
                 scrollToSection={goHome}
@@ -226,19 +225,19 @@ const AbgPage = () => {
                 activePriceList={'schlieren'}
                 handlePriceListClick={goHome}
             />
-            <div className="pt-24 pb-16 flex flex-col items-center justify-center min-h-[60vh]">
-                <h1 className="text-4xl font-bold mb-4 text-pink-700 text-center max-w-4xl">{t('abg_title')}</h1>
-                <div className="max-w-2xl text-left text-gray-800 bg-white bg-opacity-80 p-6 rounded-lg shadow-md">
+            <div className="pt-28 pb-20 px-4 flex flex-col items-center">
+                <h1 className="text-3xl text-stone-800 tracking-wide mb-2 text-center max-w-4xl">{t('abg_title')}</h1>
+                <span className="block w-16 h-px bg-gold-400 mx-auto mb-10"></span>
+                <div className="max-w-2xl w-full text-left text-stone-700 bg-white border border-stone-100 p-8 shadow-sm font-raleway font-semibold text-sm leading-relaxed">
                     {isEnglish ? <AgbContentEn /> : <AgbContentDe />}
                 </div>
                 <button
-                    className="px-6 py-3 mt-8 rounded-full bg-gradient-to-r from-pink-400 to-rose-300 text-white font-semibold shadow-md hover:scale-105 transition-all"
+                    className="mt-10 px-10 py-3 border border-pink-400 text-pink-600 font-raleway font-semibold tracking-[0.2em] uppercase text-xs hover:bg-pink-500 hover:text-white hover:border-pink-500 transition-colors duration-300"
                     onClick={goHome}
                 >
                     {t('abg_go_home')}
                 </button>
             </div>
-            {/* Footer with all buttons routing to home */}
             <Footer scrollToSection={goHome} />
         </div>
     );
