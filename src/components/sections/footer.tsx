@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { getAgbReturnPath } from '../../lib/agbReturn';
 
 interface FooterProps {
   scrollToSection: (sectionId: string) => void;
@@ -13,11 +14,14 @@ const Footer: React.FC<FooterProps> = ({ scrollToSection }) => {
 
   const handleNav = (section: string) => {
     if (location.pathname === '/agb') {
-      navigate('/', { state: { scrollTo: section } });
+      const returnPath = getAgbReturnPath((location.state as { from?: string } | null)?.from);
+      navigate(returnPath, { state: { scrollTo: section } });
     } else {
       scrollToSection(section);
     }
   };
+
+  const goToAgb = () => navigate('/agb', { state: { from: location.pathname } });
 
   const links = [
     { id: 'services', label: t('nav_services') },
@@ -54,7 +58,7 @@ const Footer: React.FC<FooterProps> = ({ scrollToSection }) => {
                 </button>
               ))}
               <button
-                onClick={() => navigate('/agb')}
+                onClick={goToAgb}
                 className="block hover:text-pink-400 transition-colors duration-200 text-sm tracking-wide"
               >
                 AGB

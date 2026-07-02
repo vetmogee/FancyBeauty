@@ -1,8 +1,9 @@
 import Navbar from '../components/sections/navbar';
 import Footer from '../components/sections/footer';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { getAgbReturnPath } from '../lib/agbReturn';
 
 const AgbContentDe = () => (
     <>
@@ -208,10 +209,12 @@ const AgbContentEn = () => (
 
 const AbgPage = () => {
     const navigate = useNavigate();
+    const location = useLocation();
     const { t, i18n } = useTranslation();
 
-    // Dummy handlers to pass to Navbar/Footer, all route to home
-    const goHome = () => navigate('/');
+    // Dummy handlers to pass to Navbar/Footer, all route back to wherever the user came from
+    const returnPath = getAgbReturnPath((location.state as { from?: string } | null)?.from);
+    const goHome = () => navigate(returnPath);
     const noop = () => { };
 
     const isEnglish = i18n.language.startsWith('en');

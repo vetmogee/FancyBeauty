@@ -13,6 +13,8 @@
     "location_zurich": "Zürich",
 
     "home_tagline": "Premium Beauty · Zürich & Schlieren",
+    "home_tagline_obeauty": "Premium Beauty · Schlieren",
+    "home_tagline_fancy": "Premium Beauty · Zürich",
     "home_since": "Seit 2018",
     "home_story_title": "Unsere Geschichte",
     "home_story_text": "Gegründet mit Leidenschaft für Schönheit und Exzellenz im Jahr 2018 verändert FancyBeauty seit fast einem Jahrzehnt Nägel und unterstreicht natürliche Schönheit. Unser Team zertifizierter Fachleute bleibt stets über die neuesten Trends und Techniken informiert, um Ihnen höchste Servicequalität in einer entspannenden, hygienischen Umgebung zu bieten.",
@@ -22,6 +24,7 @@
     "book_subtitle": "Der schnellste Weg, Ihren Besuch zu reservieren",
     "book_location": "Standort",
     "book_whatsapp": "Per WhatsApp buchen",
+    "book_instagram": "Per Instagram buchen",
 
     "services_title": "Unsere Dienstleistungen",
     "services_subtitle": "Entdecken Sie unser Angebot an Premium-Schönheitsdienstleistungen",
@@ -109,5 +112,14 @@
     "pl_item_refill_2w3w": "Auffüllung 2W/3W",
 
     "abg_title": "ALLGEMEINE GESCHÄFTSBEDINGUNGEN (AGB)",
-    "abg_go_home": "Zurück zur Startseite"
+    "abg_go_home": "Zurück zur Startseite",
+
+    "picker_title": "Wählen Sie Ihren Standort",
+    "picker_subtitle": "FancyBeauty hat zwei Studios — wählen Sie das, das Ihnen am nächsten liegt",
+    "picker_choose_obeauty": "OBeauty",
+    "picker_obeauty_desc": "Studio Schlieren",
+    "picker_choose_fancy": "Fancy by OBeauty",
+    "picker_fancy_desc": "Studio Zürich",
+    "picker_choose_home": "Startseite",
+    "picker_home_desc": "Beide Standorte ansehen"
 }

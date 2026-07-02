@@ -13,6 +13,8 @@
     "location_zurich": "Zurich",
 
     "home_tagline": "Premium Beauty · Zurich & Schlieren",
+    "home_tagline_obeauty": "Premium Beauty · Schlieren",
+    "home_tagline_fancy": "Premium Beauty · Zurich",
     "home_since": "Est. 2018",
     "home_story_title": "Our Story",
     "home_story_text": "Founded with passion for beauty and excellence in 2018, FancyBeauty has been transforming nails and enhancing natural beauty for almost a decade. Our team of certified professionals stays updated with the latest trends and techniques to ensure you receive the highest quality service in a relaxing, hygienic environment.",
@@ -22,6 +24,7 @@
     "book_subtitle": "The fastest way to reserve your visit",
     "book_location": "Location",
     "book_whatsapp": "Book via WhatsApp",
+    "book_instagram": "Book via Instagram",
 
     "services_title": "Our Services",
     "services_subtitle": "Discover our range of premium beauty services",
@@ -109,5 +112,14 @@
     "pl_item_refill_2w3w": "Refill 2w/3w",
 
     "abg_title": "GENERAL TERMS AND CONDITIONS (GTC)",
-    "abg_go_home": "Go to Home"
+    "abg_go_home": "Go to Home",
+
+    "picker_title": "Choose Your Location",
+    "picker_subtitle": "FancyBeauty has two studios — pick the one closest to you",
+    "picker_choose_obeauty": "OBeauty",
+    "picker_obeauty_desc": "Schlieren studio",
+    "picker_choose_fancy": "Fancy by OBeauty",
+    "picker_fancy_desc": "Zurich studio",
+    "picker_choose_home": "Home",
+    "picker_home_desc": "View both locations"
 }

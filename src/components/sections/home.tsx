@@ -4,8 +4,18 @@ import storypic from '../../assets/storypic.png';
 import { Star } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
-const Home = () => {
+interface HomeProps {
+  location?: 'schlieren' | 'zurich';
+}
+
+const HERO_BY_LOCATION = {
+  schlieren: { title: 'OBeauty', taglineKey: 'home_tagline_obeauty' },
+  zurich: { title: 'Fancy by OBeauty', taglineKey: 'home_tagline_fancy' },
+};
+
+const Home: React.FC<HomeProps> = ({ location }) => {
   const { t } = useTranslation();
+  const hero = location ? HERO_BY_LOCATION[location] : { title: 'FancyBeauty', taglineKey: 'home_tagline' };
 
   return (
     <section id="home" aria-labelledby="home-title" className="mt-[75px]">
@@ -21,9 +31,9 @@ const Home = () => {
         </div>
         <div className="absolute bottom-0 left-0 right-0 h-px bg-gold-400"></div>
         <div className="relative z-10 text-center px-8 flex flex-col justify-center items-center h-full gap-5">
-          <p className="text-gold-300 font-raleway font-semibold tracking-[0.35em] uppercase text-xs">{t('home_tagline')}</p>
+          <p className="text-gold-300 font-raleway font-semibold tracking-[0.35em] uppercase text-xs">{t(hero.taglineKey)}</p>
           <h1 id="home-title" className="text-6xl lg:text-8xl text-white tracking-wider leading-none">
-            FancyBeauty
+            {hero.title}
           </h1>
           <span className="block w-20 h-px bg-gold-400 mx-auto"></span>
         </div>
