@@ -18,7 +18,23 @@ export default {
 			}
 		},
 		extend: {
+			fontFamily: {
+				cormorant: ['Cormorant Garamond', 'serif'],
+				raleway: ['Raleway', 'sans-serif'],
+			},
 			colors: {
+				gold: {
+					50:  '#FEFBF0',
+					100: '#FBF3D5',
+					200: '#F5E4A0',
+					300: '#EDD06A',
+					400: '#D4AF37',
+					500: '#B8960C',
+					600: '#9A7B08',
+					700: '#7A5F06',
+					800: '#5C4704',
+					900: '#3D2F02',
+				},
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
 				ring: 'hsl(var(--ring))',
