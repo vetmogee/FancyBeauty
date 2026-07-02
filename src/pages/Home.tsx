@@ -13,7 +13,7 @@ import Book from '../components/sections/book';
 import { useSectionTracking } from '../hooks/useSectionTracking';
 import { useTranslation } from 'react-i18next';
 
-const Index = () => {
+const HomePage = () => {
     const { t } = useTranslation();
     const [activePriceList, setActivePriceList] = useState<'schlieren' | 'zurich'>('schlieren');
 
@@ -109,4 +109,4 @@ const Index = () => {
     );
 };
 
-export default Index;
+export default HomePage;

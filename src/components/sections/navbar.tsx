@@ -9,6 +9,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import fancylogolong from '../../assets/fancylogolong.png';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { getAgbReturnPath } from '../../lib/agbReturn';
 
 interface NavbarProps {
   activeSection: string;
@@ -35,11 +36,14 @@ const Navbar: React.FC<NavbarProps> = ({
 
   const handleNav = (section: string) => {
     if (location.pathname === '/agb') {
-      navigate('/', { state: { scrollTo: section } });
+      const returnPath = getAgbReturnPath((location.state as { from?: string } | null)?.from);
+      navigate(returnPath, { state: { scrollTo: section } });
     } else {
       scrollToSection(section);
     }
   };
+
+  const goToAgb = () => navigate('/agb', { state: { from: location.pathname } });
 
   const isActive = (section: string) => activeSection === section;
 
@@ -159,7 +163,7 @@ const Navbar: React.FC<NavbarProps> = ({
               </button>
             ))}
             <button
-              onClick={() => navigate('/agb')}
+              onClick={goToAgb}
               className="py-2 text-xs font-raleway font-semibold tracking-[0.1em] uppercase transition-all duration-200 text-center whitespace-nowrap text-stone-700 hover:text-gold-700"
             >
               AGB
@@ -221,7 +225,7 @@ const Navbar: React.FC<NavbarProps> = ({
                   </DropdownMenuItem>
                 ))}
                 <DropdownMenuItem
-                  onSelect={() => navigate('/agb')}
+                  onSelect={goToAgb}
                   className="py-3 text-center justify-center text-gold-700"
                 >
                   AGB
