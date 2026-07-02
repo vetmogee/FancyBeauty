@@ -44,7 +44,7 @@ const Services = () => {
                 <img
                   src={s.img}
                   alt={s.alt}
-                  className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-700"
+                  className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-700"
                 />
               </div>
               <div className="p-7">

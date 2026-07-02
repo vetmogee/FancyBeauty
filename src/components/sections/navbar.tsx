@@ -129,7 +129,7 @@ const Navbar: React.FC<NavbarProps> = ({
       style={{ height: '75px' }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
-        <div className="flex justify-between items-center h-full">
+        <div className="grid grid-cols-[auto_1fr_auto] items-center h-full gap-x-4">
 
           {/* Logo */}
           <div className="flex-shrink-0">
@@ -142,14 +142,14 @@ const Navbar: React.FC<NavbarProps> = ({
             </button>
           </div>
 
-          {/* Desktop Nav */}
-          <div className="hidden lg:flex items-center space-x-1">
+          {/* Desktop Nav — flex keeps items side by side at their natural width */}
+          <div className="hidden lg:flex items-center justify-center gap-10">
             {navItems.map((item) => (
               <button
                 key={item.id}
                 onClick={() => handleNav(item.id)}
                 aria-current={isActive(item.id) ? 'true' : undefined}
-                className={`px-4 py-2 text-sm font-raleway font-semibold tracking-[0.18em] uppercase transition-all duration-200 ${
+                className={`py-2 text-xs font-raleway font-semibold tracking-[0.1em] uppercase transition-all duration-200 text-center whitespace-nowrap ${
                   isActive(item.id)
                     ? 'text-gold-700 border-b border-gold-700'
                     : 'text-stone-700 hover:text-gold-700'
@@ -160,40 +160,43 @@ const Navbar: React.FC<NavbarProps> = ({
             ))}
             <button
               onClick={() => navigate('/agb')}
-              className="px-4 py-2 text-sm font-raleway font-semibold tracking-[0.18em] uppercase transition-all duration-200 text-stone-700 hover:text-gold-700"
+              className="py-2 text-xs font-raleway font-semibold tracking-[0.1em] uppercase transition-all duration-200 text-center whitespace-nowrap text-stone-700 hover:text-gold-700"
             >
               AGB
             </button>
           </div>
 
-          {/* Desktop Language Switcher */}
-          <div className="hidden lg:flex items-center" ref={langRef}>
-            <div className="flex items-center gap-0 border border-gold-700">
-              <button
-                onClick={() => { i18n.changeLanguage('en'); setIsLangOpen(false); }}
-                aria-label="Switch to English"
-                className={`px-3 py-1 text-xs font-raleway font-semibold tracking-[0.15em] uppercase transition-colors duration-200 ${
-                  i18n.language.startsWith('en')
-                    ? 'bg-gold-700 text-white'
-                    : 'text-gold-700 hover:bg-gold-50'
-                }`}
-              >
-                EN
-              </button>
-              <div className="w-px h-4 bg-gold-700" />
-              <button
-                onClick={() => { i18n.changeLanguage('de'); setIsLangOpen(false); }}
-                aria-label="Switch to German"
-                className={`px-3 py-1 text-xs font-raleway font-semibold tracking-[0.15em] uppercase transition-colors duration-200 ${
-                  i18n.language.startsWith('de')
-                    ? 'bg-gold-700 text-white'
-                    : 'text-gold-700 hover:bg-gold-50'
-                }`}
-              >
-                DE
-              </button>
+          {/* Right column: language switcher (desktop) + hamburger (mobile) */}
+          <div className="flex items-center justify-end">
+
+            {/* Desktop Language Switcher */}
+            <div className="hidden lg:flex items-center" ref={langRef}>
+              <div className="flex items-center gap-0 border border-gold-700">
+                <button
+                  onClick={() => { i18n.changeLanguage('en'); setIsLangOpen(false); }}
+                  aria-label="Switch to English"
+                  className={`px-3 py-1 text-xs font-raleway font-semibold tracking-[0.15em] uppercase transition-colors duration-200 ${
+                    i18n.language.startsWith('en')
+                      ? 'bg-gold-700 text-white'
+                      : 'text-gold-700 hover:bg-gold-50'
+                  }`}
+                >
+                  EN
+                </button>
+                <div className="w-px h-4 bg-gold-700" />
+                <button
+                  onClick={() => { i18n.changeLanguage('de'); setIsLangOpen(false); }}
+                  aria-label="Switch to German"
+                  className={`px-3 py-1 text-xs font-raleway font-semibold tracking-[0.15em] uppercase transition-colors duration-200 ${
+                    i18n.language.startsWith('de')
+                      ? 'bg-gold-700 text-white'
+                      : 'text-gold-700 hover:bg-gold-50'
+                  }`}
+                >
+                  DE
+                </button>
+              </div>
             </div>
-          </div>
 
           {/* Mobile Menu */}
           <div className="block lg:hidden">
@@ -255,6 +258,8 @@ const Navbar: React.FC<NavbarProps> = ({
               </DropdownMenuContent>
             </DropdownMenu>
           </div>
+
+          </div>{/* end right column */}
 
         </div>
       </div>
