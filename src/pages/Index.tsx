@@ -11,113 +11,102 @@ import Contact from '../components/sections/contact';
 import Footer from '../components/sections/footer';
 import Book from '../components/sections/book';
 import { useSectionTracking } from '../hooks/useSectionTracking';
+import { useTranslation } from 'react-i18next';
 
 const Index = () => {
-  const [activePriceList, setActivePriceList] = useState<'schlieren' | 'zurich'>('schlieren');
+    const { t } = useTranslation();
+    const [activePriceList, setActivePriceList] = useState<'schlieren' | 'zurich'>('schlieren');
 
-  const sectionIds = [
-    'home',
-    'book',
-    'services',
-    'pricelist',
-    'gallery',
-    'reviews',
-    'contact',
-  ];
+    const sectionIds = [
+        'home',
+        'book',
+        'services',
+        'pricelist',
+        'gallery',
+        'reviews',
+        'contact',
+    ];
 
-  // Use the section tracking hook with optimized settings
-  const { activeSection, scrollToSection, isScrolling } = useSectionTracking(sectionIds, {
-    rootMargin: '-20% 0px -60% 0px', // Trigger when section is in middle 40% of viewport
-    threshold: 0.5, // Section is active when 50% visible
-    scrollOffset: 100, // Account for navbar height
-    debounceMs: 50,
-  });
+    const { activeSection, scrollToSection, isScrolling } = useSectionTracking(sectionIds, {
+        rootMargin: '-20% 0px -60% 0px',
+        threshold: 0.5,
+        scrollOffset: 100,
+        debounceMs: 50,
+    });
 
-  const handlePriceListClick = (location: 'schlieren' | 'zurich') => {
-    scrollToSection('pricelist');
-    setActivePriceList(location);
-  };
+    const handlePriceListClick = (location: 'schlieren' | 'zurich') => {
+        scrollToSection('pricelist');
+        setActivePriceList(location);
+    };
 
-  const handlePriceListSectionClick = () => {
-    scrollToSection('pricelist');
-  };
+    const handlePriceListSectionClick = () => {
+        scrollToSection('pricelist');
+    };
 
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-50 via-purple-50 to-indigo-50">
-      {/* Navbar */}
-      <Navbar
-        activeSection={activeSection}
-        scrollToSection={scrollToSection}
-        handlePriceListSectionClick={handlePriceListSectionClick}
-        activePriceList={activePriceList}
-        handlePriceListClick={handlePriceListClick}
-        isScrolling={isScrolling}
-      />
+    return (
+        <div className="min-h-screen bg-marble">
+            <a href="#main-content" className="skip-link">Skip to main content</a>
+            <Navbar
+                activeSection={activeSection}
+                scrollToSection={scrollToSection}
+                handlePriceListSectionClick={handlePriceListSectionClick}
+                activePriceList={activePriceList}
+                handlePriceListClick={handlePriceListClick}
+                isScrolling={isScrolling}
+            />
 
-      {/* Home Section */}
-      <Home />
-      
-      {/* Book Section */}
-      <Book />
+            <main id="main-content">
+                <Home />
+                <Book />
+                <Services />
 
-      {/* Services Section */}
-      <Services />
-      
-      {/* Price List Section */}
-      <section id="pricelist" className="py-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <br />
-          <div className="text-center mb-8">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Price List</h2>
-            <p className="text-xl text-gray-600">Transparent pricing for all our services</p>
-          </div>
-          
-          <div className="flex justify-center gap-6 mb-10">
-            <button
-              className={`relative px-8 py-3 rounded-full text-lg font-semibold transition-all duration-500 overflow-hidden focus:outline-none border-2 border-pink-400 shadow-md
-                ${activePriceList === 'schlieren' ? 'bg-gradient-to-r from-pink-400 to-rose-300 text-white scale-105' : 'bg-white text-pink-600 hover:bg-pink-50'}`}
-              onClick={() => handlePriceListClick('schlieren')}
-            >
-              <span className="block transition-all duration-500" style={{ opacity: activePriceList === 'schlieren' ? 1 : 0.7 }}>Schlieren</span>
-            </button>
-            <button
-              className={`relative px-8 py-3 rounded-full text-lg font-semibold transition-all duration-500 overflow-hidden focus:outline-none border-2 border-pink-400 shadow-md
-                ${activePriceList === 'zurich' ? 'bg-gradient-to-r from-rose-100 to-pink-400 text-white scale-105' : 'bg-white text-pink-600 hover:bg-purple-50'}`}
-              onClick={() => handlePriceListClick('zurich')}
-            >
-              <span className="block transition-all duration-500" style={{ opacity: activePriceList === 'zurich' ? 1 : 0.7 }}>Zurich</span>
-            </button>
-          </div>
-          
+                <section id="pricelist" aria-labelledby="pricelist-title" className="py-20 px-4 sm:px-6 lg:px-8 bg-stone-50">
+                    <div className="max-w-7xl mx-auto">
+                        <div className="text-center mb-10">
+                            <h2 id="pricelist-title" className="text-5xl text-stone-800 mb-3 tracking-wide">{t('price_list_title')}</h2>
+                            <span className="block w-16 h-px bg-gold-400 mx-auto mb-4"></span>
+                            <p className="text-stone-600 font-raleway font-light tracking-wider text-sm uppercase">{t('price_list_subtitle')}</p>
+                        </div>
 
-          <div className="relative">
-            <div
-              className={`transition-all duration-700 ${activePriceList === 'schlieren' ? 'opacity-100 translate-x-0 z-10' : 'opacity-0 -translate-x-10 z-0 absolute w-full'} pointer-events-${activePriceList === 'schlieren' ? 'auto' : 'none'}`}
-            >
-              <ObeatPL />
-            </div>
-            <div
-              className={`transition-all duration-700 ${activePriceList === 'zurich' ? 'opacity-100 translate-x-0 z-10' : 'opacity-0 translate-x-10 z-0 absolute w-full'} pointer-events-${activePriceList === 'zurich' ? 'auto' : 'none'}`}
-            >
-              <FancyPL />
-            </div>
-          </div>
+                        <div className="flex justify-center gap-0 mb-12">
+                            <button
+                                className={`px-10 py-3 text-sm font-raleway font-light tracking-[0.2em] uppercase transition-all duration-300 focus:outline-none border border-pink-400
+                ${activePriceList === 'schlieren' ? 'bg-pink-600 text-white border-pink-600' : 'bg-transparent text-pink-600 hover:bg-pink-50'}`}
+                                onClick={() => handlePriceListClick('schlieren')}
+                            >
+                                {t('location_schlieren')}
+                            </button>
+                            <button
+                                className={`px-10 py-3 text-sm font-raleway font-light tracking-[0.2em] uppercase transition-all duration-300 focus:outline-none border border-pink-400 border-l-0
+                ${activePriceList === 'zurich' ? 'bg-pink-600 text-white border-pink-600' : 'bg-transparent text-pink-600 hover:bg-pink-50'}`}
+                                onClick={() => handlePriceListClick('zurich')}
+                            >
+                                {t('location_zurich')}
+                            </button>
+                        </div>
+
+                        <div className="relative">
+                            <div
+                                className={`transition-all duration-700 ${activePriceList === 'schlieren' ? 'opacity-100 translate-x-0 z-10' : 'opacity-0 -translate-x-10 z-0 absolute w-full'} pointer-events-${activePriceList === 'schlieren' ? 'auto' : 'none'}`}
+                            >
+                                <ObeatPL />
+                            </div>
+                            <div
+                                className={`transition-all duration-700 ${activePriceList === 'zurich' ? 'opacity-100 translate-x-0 z-10' : 'opacity-0 translate-x-10 z-0 absolute w-full'} pointer-events-${activePriceList === 'zurich' ? 'auto' : 'none'}`}
+                            >
+                                <FancyPL />
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <Gallery />
+                <Reviews />
+                <Contact />
+            </main>
+            <Footer scrollToSection={scrollToSection} />
         </div>
-      </section>
-
-      {/* Gallery Section */}
-      <Gallery />
-
-      {/* Reviews Section */}
-      <Reviews />
-
-      {/* Contact Section */}
-      <Contact />
-
-      {/* Footer */}
-      <Footer scrollToSection={scrollToSection} />
-    </div>
-  );
+    );
 };
 
 export default Index;
