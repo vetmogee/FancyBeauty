@@ -1,4 +1,12 @@
 {
+    "picker_title": "Choose Your Location",
+    "picker_subtitle": "FancyBeauty has two locations — pick the one closest to you",
+    "picker_choose_obeauty": "OBeauty",
+    "picker_obeauty_desc": "Schlieren studio",
+    "picker_choose_fancy": "Fancy by OBeauty",
+    "picker_fancy_desc": "Zurich studio",
+    "picker_choose_home": "Home",
+    "picker_home_desc": "View both locations",
     "nav_home": "Home",
     "nav_book": "Book",
     "nav_services": "Services",
@@ -51,7 +59,7 @@
 
     "footer_tagline": "Your premier destination for luxury nail care and beauty services in Zurich and Schlieren.",
     "footer_quick_links": "Quick Links",
-    "footer_copyright": "© 2024 FancyBeauty GmbH · All rights reserved · Crafted with care in Switzerland",
+    "footer_copyright": "© 2024 FancyBeauty GmbH · All rights reserved · Build by <1>Mejlos</1>",
 
     "pl_category_manicure": "Manicure",
     "pl_category_pedicure": "Pedicure",
@@ -113,14 +121,5 @@
 
     "abg_title": "GENERAL TERMS AND CONDITIONS (GTC)",
     "abg_go_home": "Go to Home",
-    "abg_back_to": "Back to {{location}}",
-
-    "picker_title": "Choose Your Location",
-    "picker_subtitle": "FancyBeauty has two studios — pick the one closest to you",
-    "picker_choose_obeauty": "OBeauty",
-    "picker_obeauty_desc": "Schlieren studio",
-    "picker_choose_fancy": "Fancy by OBeauty",
-    "picker_fancy_desc": "Zurich studio",
-    "picker_choose_home": "Home",
-    "picker_home_desc": "View both locations"
+    "abg_back_to": "Back to {{location}}"
 }
