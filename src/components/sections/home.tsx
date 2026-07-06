@@ -18,7 +18,7 @@ const Home: React.FC<HomeProps> = ({ location }) => {
   const hero = location ? HERO_BY_LOCATION[location] : { title: 'FancyBeauty', taglineKey: 'home_tagline' };
 
   return (
-    <section id="home" aria-labelledby="home-title" className="mt-[75px]">
+    <section id="home" aria-labelledby="home-title" className="mt-[60px] lg:mt-[75px]">
       {/* Hero */}
       <div className="relative overflow-hidden h-96 lg:h-[900px] md:h-[500px]">
         <div className="absolute inset-0">

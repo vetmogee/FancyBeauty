@@ -32,7 +32,9 @@ const Navbar: React.FC<NavbarProps> = ({
   const location = useLocation();
   const { t, i18n } = useTranslation();
   const [isLangOpen, setIsLangOpen] = useState(false);
+  const [isNavHidden, setIsNavHidden] = useState(false);
   const langRef = useRef<HTMLDivElement>(null);
+  const lastScrollYRef = useRef(0);
 
   const handleNav = (section: string) => {
     if (location.pathname === '/agb') {
@@ -65,6 +67,28 @@ const Navbar: React.FC<NavbarProps> = ({
     };
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  useEffect(() => {
+    lastScrollYRef.current = window.scrollY;
+
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      const scrolledDown = currentScrollY > lastScrollYRef.current;
+
+      if (currentScrollY < 80) {
+        setIsNavHidden(false);
+      } else if (scrolledDown) {
+        setIsNavHidden(true);
+      } else {
+        setIsNavHidden(false);
+      }
+
+      lastScrollYRef.current = currentScrollY;
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   useEffect(() => {
@@ -102,12 +126,20 @@ const Navbar: React.FC<NavbarProps> = ({
             background-color: rgba(122, 95, 6, 0.08) !important;
             color: #7A5F06 !important;
           }
+          [data-radix-popper-content-wrapper] > div[data-state="open"] {
+            animation: slideDownMobile 0.35s ease-out !important;
+          }
+          [data-radix-popper-content-wrapper] > div[data-state="closed"] {
+            animation: slideUpMobile 0.25s ease-in !important;
+          }
         }
-        [data-radix-popper-content-wrapper] > div[data-state="open"] {
-          animation: slideDown 0.2s ease-out !important;
-        }
-        [data-radix-popper-content-wrapper] > div[data-state="closed"] {
-          animation: slideUp 0.15s ease-in !important;
+        @media (min-width: 1024px) {
+          [data-radix-popper-content-wrapper] > div[data-state="open"] {
+            animation: slideDown 0.2s ease-out !important;
+          }
+          [data-radix-popper-content-wrapper] > div[data-state="closed"] {
+            animation: slideUp 0.15s ease-in !important;
+          }
         }
         @keyframes slideDown {
           from { opacity: 0; transform: translateY(-10px); }
@@ -116,6 +148,14 @@ const Navbar: React.FC<NavbarProps> = ({
         @keyframes slideUp {
           from { opacity: 1; transform: translateY(0); }
           to { opacity: 0; transform: translateY(-10px); }
+        }
+        @keyframes slideDownMobile {
+          from { opacity: 1; clip-path: inset(0 0 100% 0); }
+          to { opacity: 1; clip-path: inset(0 0 0% 0); }
+        }
+        @keyframes slideUpMobile {
+          from { opacity: 1; clip-path: inset(0 0 0% 0); }
+          to { opacity: 1; clip-path: inset(0 0 100% 0); }
         }
       `;
       document.head.appendChild(style);
@@ -129,8 +169,9 @@ const Navbar: React.FC<NavbarProps> = ({
   return (
     <nav
       aria-label="Main navigation"
-      className="fixed top-0 w-full bg-[#FAF7F3]/95 backdrop-blur-md z-50 border-b border-gold-400/50 transition-all duration-300"
-      style={{ height: '75px' }}
+      className={`fixed top-0 w-full bg-[#FAF7F3] lg:bg-[#FAF7F3]/95 backdrop-blur-none lg:backdrop-blur-md z-50 border-b border-gold-400/50 transition-transform duration-300 h-[60px] lg:h-[75px] ${
+        isNavHidden ? '-translate-y-full' : 'translate-y-0'
+      }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
         <div className="grid grid-cols-[auto_1fr_auto] items-center h-full gap-x-4">
@@ -141,7 +182,7 @@ const Navbar: React.FC<NavbarProps> = ({
               <img
                 src={fancylogolong}
                 alt="FancyBeauty Logo"
-                className="h-14 w-auto object-contain"
+                className="h-9 w-auto object-contain lg:h-14"
               />
             </button>
           </div>

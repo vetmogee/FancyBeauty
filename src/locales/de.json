@@ -113,6 +113,7 @@
 
     "abg_title": "ALLGEMEINE GESCHÄFTSBEDINGUNGEN (AGB)",
     "abg_go_home": "Zurück zur Startseite",
+    "abg_back_to": "Zurück zu {{location}}",
 
     "picker_title": "Wählen Sie Ihren Standort",
     "picker_subtitle": "FancyBeauty hat zwei Studios — wählen Sie das, das Ihnen am nächsten liegt",

@@ -1,9 +1,16 @@
 import Navbar from '../components/sections/navbar';
 import Footer from '../components/sections/footer';
 import { useNavigate, useLocation } from 'react-router-dom';
-import React from 'react';
+import React, { useEffect } from 'react';
+import { ChevronLeft } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { getAgbReturnPath } from '../lib/agbReturn';
+import { getAgbReturnPath, AgbReturnPath } from '../lib/agbReturn';
+
+const RETURN_PATH_LABEL_KEYS: Record<AgbReturnPath, string> = {
+    '/home': 'picker_choose_home',
+    '/obeauty': 'picker_choose_obeauty',
+    '/fancy': 'picker_choose_fancy',
+};
 
 const AgbContentDe = () => (
     <>
@@ -212,10 +219,16 @@ const AbgPage = () => {
     const location = useLocation();
     const { t, i18n } = useTranslation();
 
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
     // Dummy handlers to pass to Navbar/Footer, all route back to wherever the user came from
     const returnPath = getAgbReturnPath((location.state as { from?: string } | null)?.from);
     const goHome = () => navigate(returnPath);
     const noop = () => { };
+
+    const returnLabel = t(RETURN_PATH_LABEL_KEYS[returnPath]);
 
     const isEnglish = i18n.language.startsWith('en');
 
@@ -228,7 +241,14 @@ const AbgPage = () => {
                 activePriceList={'schlieren'}
                 handlePriceListClick={goHome}
             />
-            <main className="pt-28 pb-20 px-4 flex flex-col items-center">
+            <main className="pt-24 lg:pt-28 pb-20 px-4 flex flex-col items-center">
+                <button
+                    onClick={goHome}
+                    className="self-start mb-8 inline-flex items-center gap-1 text-xs font-raleway font-semibold tracking-[0.1em] uppercase text-stone-600 hover:text-gold-700 transition-colors duration-200"
+                >
+                    <ChevronLeft className="h-4 w-4" />
+                    {t('abg_back_to', { location: returnLabel })}
+                </button>
                 <h1 className="text-3xl text-stone-800 tracking-wide mb-2 text-center max-w-4xl">{t('abg_title')}</h1>
                 <span className="block w-16 h-px bg-gold-400 mx-auto mb-10"></span>
                 <div className="max-w-2xl w-full text-left text-stone-700 bg-white border border-stone-100 p-8 shadow-sm font-raleway font-semibold text-sm leading-relaxed">
