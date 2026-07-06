@@ -1,10 +1,10 @@
-import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import fancylogolong from '../assets/fancylogolong.png';
+import { useLocationTransition } from '../components/PageTransition';
 
 const LocationPicker = () => {
-    const navigate = useNavigate();
     const { t, i18n } = useTranslation();
+    const { transitionTo } = useLocationTransition();
 
     const choices = [
         { path: '/obeauty', titleKey: 'picker_choose_obeauty', descKey: 'picker_obeauty_desc' },
@@ -52,7 +52,7 @@ const LocationPicker = () => {
                 {choices.map((choice) => (
                     <button
                         key={choice.path}
-                        onClick={() => navigate(choice.path)}
+                        onClick={() => transitionTo(choice.path)}
                         className="bg-white border border-stone-100 shadow-sm hover:shadow-md hover:border-gold-400 transition-all duration-300 p-10 text-center group"
                     >
                         <span className="block w-8 h-px bg-gold-400 mx-auto mb-5"></span>
