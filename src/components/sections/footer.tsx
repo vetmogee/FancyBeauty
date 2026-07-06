@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import { getAgbReturnPath } from '../../lib/agbReturn';
 
 interface FooterProps {
@@ -69,7 +69,19 @@ const Footer: React.FC<FooterProps> = ({ scrollToSection }) => {
 
         <div className="mt-14 pt-8 border-t border-stone-700 text-center">
           <p className="text-stone-400 font-raleway font-semibold text-xs tracking-wider">
-            {t('footer_copyright')}
+            <Trans
+              i18nKey="footer_copyright"
+              components={{
+                1: (
+                  <a
+                    href="https://www.mejlos.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-stone-400 hover:text-pink-400 transition-colors duration-200 underline"
+                  />
+                ),
+              }}
+            />
           </p>
         </div>
       </div>
