@@ -12,7 +12,6 @@ import Fancy from "./pages/Fancy";
 import NotFound from "./pages/NotFound";
 import AgbPage from "./pages/agb";
 import { PageTransitionProvider } from "./components/PageTransition";
-import { SpeedInsights } from '@vercel/speed-insights/react';
 
 const queryClient = new QueryClient();
 
