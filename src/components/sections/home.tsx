@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import homeimg from '../../assets/homeimg.png';
 import storypic from '../../assets/storypic.png';
 import { Star } from 'lucide-react';
@@ -13,9 +13,49 @@ const HERO_BY_LOCATION = {
   zurich: { title: 'Fancy by OBeauty', taglineKey: 'home_tagline_fancy' },
 };
 
+// hidden state per element: mobile always drops down; on md+ the text
+// comes in from the left and the image from the right
+const hiddenStates = [
+  'opacity-0 -translate-y-10 md:translate-y-0 md:-translate-x-10',
+  'opacity-0 -translate-y-10 md:translate-y-0 md:translate-x-10',
+];
+
 const Home: React.FC<HomeProps> = ({ location }) => {
   const { t } = useTranslation();
   const hero = location ? HERO_BY_LOCATION[location] : { title: 'FancyBeauty', taglineKey: 'home_tagline' };
+  const [visible, setVisible] = useState<boolean[]>([false, false]);
+  const revealRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const [heroShown, setHeroShown] = useState(false);
+
+  useEffect(() => {
+    // wait a frame so the hidden state paints before animating in
+    const raf = requestAnimationFrame(() => {
+      requestAnimationFrame(() => setHeroShown(true));
+    });
+    return () => cancelAnimationFrame(raf);
+  }, []);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const idx = revealRefs.current.indexOf(entry.target as HTMLDivElement);
+          if (idx === -1) return;
+          setVisible((v) => v.map((shown, i) => (i === idx ? true : shown)));
+          observer.unobserve(entry.target);
+        });
+      },
+      { threshold: 0.2 }
+    );
+    revealRefs.current.forEach((el) => el && observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+
+  const revealClass = (i: number) =>
+    `transition-all duration-1000 ease-out motion-reduce:transition-none motion-reduce:transform-none ${
+      visible[i] ? 'opacity-100 translate-x-0 translate-y-0' : hiddenStates[i]
+    }`;
 
   return (
     <section id="home" aria-labelledby="home-title" className="mt-[60px] lg:mt-[75px]">
@@ -31,8 +71,19 @@ const Home: React.FC<HomeProps> = ({ location }) => {
         </div>
         <div className="absolute bottom-0 left-0 right-0 h-px bg-gold-400"></div>
         <div className="relative z-10 text-center px-8 flex flex-col justify-center items-center h-full gap-5">
-          <p className="text-gold-300 font-raleway font-semibold tracking-[0.35em] uppercase text-xs">{t(hero.taglineKey)}</p>
-          <h1 id="home-title" className="text-6xl lg:text-8xl text-white tracking-wider leading-none">
+          <p
+            className={`text-gold-300 font-raleway font-semibold tracking-[0.35em] uppercase text-xs transition-all duration-1000 delay-500 ease-out motion-reduce:transition-none motion-reduce:transform-none ${
+              heroShown ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-6'
+            }`}
+          >
+            {t(hero.taglineKey)}
+          </p>
+          <h1
+            id="home-title"
+            className={`text-6xl lg:text-8xl text-white tracking-wider leading-none transition-all duration-1000 delay-500 ease-out motion-reduce:transition-none motion-reduce:transform-none ${
+              heroShown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+            }`}
+          >
             {hero.title}
           </h1>
           <span className="block w-20 h-px bg-gold-400 mx-auto"></span>
@@ -43,7 +94,7 @@ const Home: React.FC<HomeProps> = ({ location }) => {
       <div className="max-w-7xl mx-auto px-5 py-20">
         <div className="bg-white border border-stone-100 p-10 shadow-sm">
           <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div>
+            <div ref={(el) => { revealRefs.current[0] = el; }} className={revealClass(0)}>
               <p className="text-gold-700 font-raleway font-semibold tracking-[0.25em] uppercase text-xs mb-4">{t('home_since')}</p>
               <h2 id="home-story-title" className="text-4xl text-stone-800 mb-5 tracking-wide">{t('home_story_title')}</h2>
               <span className="block w-12 h-px bg-gold-400 mb-6"></span>
@@ -74,7 +125,7 @@ const Home: React.FC<HomeProps> = ({ location }) => {
                 <span className="text-stone-600 font-raleway font-semibold text-xs tracking-wider">{t('home_rating')}</span>
               </div>
             </div>
-            <div className="relative">
+            <div ref={(el) => { revealRefs.current[1] = el; }} className={`relative ${revealClass(1)}`}>
               <img
                 src={storypic}
                 alt="Nail technician at work in FancyBeauty studio"
