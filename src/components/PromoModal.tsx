@@ -12,6 +12,9 @@ const MIN_SCALE = 1;
 const MAX_SCALE = 4;
 const ZOOM_STEP = 0.5;
 
+// The promo popup only runs on the main studio pages.
+const PROMO_PAGES = ['/home', '/obeauty', '/fancy'];
+
 // Promo popup shown on every fresh page load / refresh while the promo is live.
 const PromoModal = () => {
   const { pathname } = useLocation();
@@ -25,8 +28,8 @@ const PromoModal = () => {
   const boxRef = useRef<HTMLDivElement>(null);
   const drag = useRef({ startX: 0, startY: 0, ox: 0, oy: 0, active: false });
 
-  // Don't run the popup on the promo pages themselves (it would be redundant).
-  const visible = open && isPromoActive() && !pathname.startsWith('/promo');
+  // Only run the popup once the user is on /home, /obeauty, or /fancy.
+  const visible = open && isPromoActive() && PROMO_PAGES.includes(pathname);
 
   // Keep the image covering the modal: clamp panning so no empty space can show.
   const clamp = useCallback((x: number, y: number, s: number) => {
