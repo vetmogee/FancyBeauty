@@ -40,12 +40,14 @@ const Navbar: React.FC<NavbarProps> = ({
     if (location.pathname === '/agb') {
       const returnPath = getAgbReturnPath((location.state as { from?: string } | null)?.from);
       navigate(returnPath, { state: { scrollTo: section } });
+    } else if (location.pathname.startsWith('/promo')) {
+      navigate('/home', { state: { scrollTo: section } });
     } else {
       scrollToSection(section);
     }
   };
 
-  const goToAgb = () => navigate('/agb', { state: { from: location.pathname } });
+  const goToPromo = () => navigate('/promo');
 
   const isActive = (section: string) => activeSection === section;
 
@@ -204,10 +206,10 @@ const Navbar: React.FC<NavbarProps> = ({
               </button>
             ))}
             <button
-              onClick={goToAgb}
+              onClick={goToPromo}
               className="py-2 text-xs font-raleway font-semibold tracking-[0.1em] uppercase transition-all duration-200 text-center whitespace-nowrap text-stone-700 hover:text-gold-700"
             >
-              AGB
+              {t('nav_promo')}
             </button>
           </div>
 
@@ -266,10 +268,10 @@ const Navbar: React.FC<NavbarProps> = ({
                   </DropdownMenuItem>
                 ))}
                 <DropdownMenuItem
-                  onSelect={goToAgb}
+                  onSelect={goToPromo}
                   className="py-3 text-center justify-center text-gold-700"
                 >
-                  AGB
+                  {t('nav_promo')}
                 </DropdownMenuItem>
 
                 {/* Mobile Language Switcher */}

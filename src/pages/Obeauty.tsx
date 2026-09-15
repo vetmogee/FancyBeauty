@@ -1,5 +1,5 @@
 
-import ObeatPL from '../components/sections/obeat_pl';
+import ObeatPL from '../components/sections/obeaut_pl';
 import Navbar from '../components/sections/navbar';
 import Home from '../components/sections/home';
 import Services from '../components/sections/services';

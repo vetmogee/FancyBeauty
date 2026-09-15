@@ -1,5 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import PromoPrice from '@/components/PromoPrice';
 
 export const zurichPriceList = [
   {
@@ -123,8 +124,8 @@ const FancyPL: React.FC<FancyPLProps> = ({ filter = 'all' }) => {
                   {section.items.map((item, i) => (
                     <div key={i} className="flex justify-between items-center py-2 border-b border-stone-50 last:border-b-0">
                       <span className="text-stone-600 font-raleway font-semibold flex-1 text-sm">{t(item.nameKey)}</span>
-                      <span className="text-pink-600 font-raleway font-semibold text-center flex-1 text-sm">{item.refillPrice}</span>
-                      <span className="text-pink-600 font-raleway font-semibold text-center flex-1 text-sm">{item.newPrice}</span>
+                      <span className="flex-1 flex justify-center"><PromoPrice price={item.refillPrice} className="text-sm" align="center" /></span>
+                      <span className="flex-1 flex justify-center"><PromoPrice price={item.newPrice} className="text-sm" align="center" /></span>
                     </div>
                   ))}
                 </>
@@ -132,7 +133,7 @@ const FancyPL: React.FC<FancyPLProps> = ({ filter = 'all' }) => {
                 section.items.map((item, i) => (
                   <div key={i} className="flex justify-between items-center py-2 border-b border-stone-50 last:border-b-0">
                     <span className="text-stone-600 font-raleway font-semibold text-sm">{t(item.nameKey)}</span>
-                    <span className="text-pink-600 font-raleway font-semibold text-sm">{item.price}</span>
+                    <PromoPrice price={item.price} className="text-sm" />
                   </div>
                 ))
               )}

@@ -11,7 +11,10 @@ import Obeauty from "./pages/Obeauty";
 import Fancy from "./pages/Fancy";
 import NotFound from "./pages/NotFound";
 import AgbPage from "./pages/agb";
+import PromoIndex from "./pages/promo/Index";
+import ZoomIn from "./pages/promo/ZoomIn";
 import { PageTransitionProvider } from "./components/PageTransition";
+import PromoModal from "./components/PromoModal";
 import { SpeedInsights } from '@vercel/speed-insights/react';
 
 const queryClient = new QueryClient();
@@ -36,6 +39,7 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <LangSync />
+        <PromoModal />
         <PageTransitionProvider>
           <Routes>
             <Route path="/" element={<LocationPicker />} />
@@ -43,6 +47,8 @@ const App = () => (
             <Route path="/obeauty" element={<Obeauty />} />
             <Route path="/fancy" element={<Fancy />} />
             <Route path="/agb" element={<AgbPage />} />
+            <Route path="/promo" element={<PromoIndex />} />
+            <Route path="/promo/zoomin" element={<ZoomIn />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

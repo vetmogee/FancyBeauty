@@ -16,6 +16,8 @@ const Footer: React.FC<FooterProps> = ({ scrollToSection }) => {
     if (location.pathname === '/agb') {
       const returnPath = getAgbReturnPath((location.state as { from?: string } | null)?.from);
       navigate(returnPath, { state: { scrollTo: section } });
+    } else if (location.pathname.startsWith('/promo')) {
+      navigate('/home', { state: { scrollTo: section } });
     } else {
       scrollToSection(section);
     }
