@@ -8,7 +8,7 @@ export const PROMO_RATE = 0.15;
 
 // Local time (Europe/Zurich for the studio). End is exclusive, so the whole of
 // 23.09 is still inside the promo.
-export const PROMO_START = new Date('2026-09-13T00:00:00');
+export const PROMO_START = new Date('2026-09-16T00:00:00');
 export const PROMO_END = new Date('2026-09-24T00:00:00');
 
 export function isPromoActive(now: Date = new Date()): boolean {
