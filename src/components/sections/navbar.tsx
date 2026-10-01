@@ -7,6 +7,8 @@ import {
 } from '../ui/dropdown-menu';
 import React, { useEffect, useRef, useState } from 'react';
 import fancylogolong from '../../assets/fancylogolong.png';
+import fancylogo from '../../assets/fancylogo.png';
+import obeautylogo from '../../assets/obeautylogo-gold.png';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { getAgbReturnPath } from '../../lib/agbReturn';
@@ -30,6 +32,7 @@ const Navbar: React.FC<NavbarProps> = ({
 }) => {
   const navigate = useNavigate();
   const location = useLocation();
+  const isObeauty = location.pathname === '/obeauty' || location.pathname === '/home';
   const { t, i18n } = useTranslation();
   const [isLangOpen, setIsLangOpen] = useState(false);
   const [isNavHidden, setIsNavHidden] = useState(false);
@@ -182,8 +185,8 @@ const Navbar: React.FC<NavbarProps> = ({
           <div className="flex-shrink-0">
             <button onClick={() => navigate('/')} className="focus:outline-none">
               <img
-                src={fancylogolong}
-                alt="FancyBeauty Logo"
+                src={isObeauty ? obeautylogo : fancylogo}
+                alt={isObeauty ? 'OBeauty Logo' : 'FancyBeauty Logo'}
                 className="h-9 w-auto object-contain lg:h-14"
               />
             </button>

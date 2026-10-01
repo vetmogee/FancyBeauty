@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import fancylogolong from '../assets/fancylogolong.png';
+import obeautylogo from '../assets/obeautylogo-gold.png';
 import { useLocationTransition } from '../components/PageTransition';
 
 const LocationPicker = () => {
@@ -40,7 +40,7 @@ const LocationPicker = () => {
                 </button>
             </div>
 
-            <img src={fancylogolong} alt="FancyBeauty Logo" className="h-16 w-auto object-contain mb-10" />
+            <img src={obeautylogo} alt="OBeauty Logo" className="h-28 w-auto object-contain mb-10" />
 
             <h1 className="text-4xl text-stone-800 mb-3 tracking-wide text-center">{t('picker_title')}</h1>
             <span className="block w-16 h-px bg-gold-400 mb-4"></span>

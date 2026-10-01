@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useRef, useState, ReactNode } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import fancylogolong from '../assets/fancylogolong.png';
+import obeautylogo from '../assets/obeautylogo-gold.png';
 
 type Phase = 'idle' | 'opening' | 'holding' | 'fading';
 
@@ -21,9 +22,11 @@ export const PageTransitionProvider = ({ children }: { children: ReactNode }) =>
     const location = useLocation();
     const [phase, setPhase] = useState<Phase>('idle');
     const [isSplitOpen, setIsSplitOpen] = useState(false);
+    const [targetPath, setTargetPath] = useState('');
     const pendingNavRef = useRef(false);
 
     const transitionTo = (path: string) => {
+        setTargetPath(path);
         setPhase('opening');
         setIsSplitOpen(false);
         pendingNavRef.current = true;
@@ -62,7 +65,11 @@ export const PageTransitionProvider = ({ children }: { children: ReactNode }) =>
                     }`}
                 >
                     <div className="absolute inset-0 bg-[#FAF7F3] flex flex-col items-center justify-center gap-5">
-                        <img src={fancylogolong} alt="FancyBeauty Logo" className="h-12 w-auto object-contain animate-pulse" />
+                        {targetPath === '/obeauty' || targetPath === '/home' ? (
+                            <img src={obeautylogo} alt="OBeauty Logo" className="h-20 w-auto object-contain animate-pulse" />
+                        ) : (
+                            <img src={fancylogolong} alt="FancyBeauty Logo" className="h-12 w-auto object-contain animate-pulse" />
+                        )}
                         <div className="w-9 h-9 border-2 border-gold-400 border-t-transparent rounded-full animate-spin" />
                     </div>
 
